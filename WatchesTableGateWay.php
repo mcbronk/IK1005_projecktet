@@ -36,7 +36,12 @@ class WatchesTableGateWay
         return $watches;
     }
 
+    public function getSearchByCategory($category) {
+        $pdo=DBConnection::connect();
 
+        $sql = 'SELECT * FROM h15_exlusivewatches WHERE Kategori =: category';
+        //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
+    }
 }
 /*
 $filmer = new FilmerTableGateWay();

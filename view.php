@@ -41,9 +41,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Sökfunktion -->
                     <li>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-left" method="post" role="search">
                             <div class="input-group">
-                                <input type="text" class="form-control bannersearch" tabindex="2" placeholder="Sök...">
+                                <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök...">
                                 <span class="input-group-btn">
                           <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                       </span>
