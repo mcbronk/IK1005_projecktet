@@ -38,9 +38,17 @@ class WatchesTableGateWay
 
     public function getSearchByCategory($category) {
         $pdo=DBConnection::connect();
-
-        $sql = 'SELECT * FROM h15_exlusivewatches WHERE Kategori =: category';
         //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
+        $sql = "CALL getgetWatchesByCategory ({$category})";
+
+        //Förbereder hämtning från MYSQL databasen
+        $statement = $pdo->prepare($sql);
+        $statement->bindParam(':Kategori',$category,PDO::PARAM_STR);
+
+        //Hämtar ifrån databasen
+        $watches = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $pdo = null; //Stänger
+        return $watches;
     }
 }
 /*
