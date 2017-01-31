@@ -55,8 +55,8 @@
                         <a href="produkter.html" tabindex="3" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="true" aria-expanded="false">PRODUKTER<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Controller.php?getAllWatches" tabindex="4">KLOCKOR</a></li>
-                            <li><a href="tillbehor.html" tabindex="5">TILLBEHÖR</a></li>
+                            <li><a href="Controller.php?getWatchesByCategory/Klockor" tabindex="4">KLOCKOR</a></li>
+                            <li><a href="Controller.php?getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
                             <li><a href="access.html" tabindex="6">ACCESOARER</a></li>
                         </ul>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
@@ -131,7 +131,7 @@
                     echo '<strong>', $element['Pris'], '</strong>';
                     echo '<hr><br>';
                     echo '<button type="button" class="buy-btns">Köp</button>';
-                    echo $element['ID'];
+                    echo $element['Kategori'];
                     echo '<a href="Controller.php?getWatchesById/', $element['ID'], '"><button type="button" class="info-btns">Information</button></a>
                 </div>';
                 }

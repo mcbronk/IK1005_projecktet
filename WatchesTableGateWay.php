@@ -34,14 +34,16 @@ class WatchesTableGateWay
         return $watches;
     }
 
-    public function getSearchByCategory($category) {
+
+    public function getWatchesByCategory($category) {
         $pdo=DBConnection::connect();
         //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
-        $sql = "CALL getWatchesByCategory ({$category})";
+        $sql = "CALL getWatchesByCategory ('{$category}')";
 
         //Förbereder hämtning från MYSQL databasen
         $statement = $pdo->prepare($sql);
         $statement->bindParam(':Kategori',$category,PDO::PARAM_STR);
+        $statement->execute();
 
         //Hämtar ifrån databasen
         $watches = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -50,7 +52,8 @@ class WatchesTableGateWay
     }
 }
 /*
-$filmer = new FilmerTableGateWay();
-var_dump($filmer->getAllProdukter());
+$filmer = new WatchesTableGateWay();
+var_dump($filmer->getWatchesByCategory('Klockor'));
 */
+
 ?>

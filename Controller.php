@@ -51,10 +51,10 @@ class Controller {
     }
 
 
-    public function getCategories($category) {
+    public function getWatchesByCategory($category) {
         $model = new WatchesTableGateWay();
-        $categoryProduct = $model -> getSearchByCategory($category);
-        $dataArray = array("product" => $categoryProduct);
+        $categoryProduct = $model -> getWatchesByCategory($category);
+        $dataArray = array("watch" => $categoryProduct);
 
         $this -> display($dataArray, './view.php');
     }
