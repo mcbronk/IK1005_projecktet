@@ -12,8 +12,6 @@ class WatchesTableGateWay
 
         $statement = $pdo->prepare($sql);
 
-
-
         $statement->execute();
 
         $watches = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -39,7 +37,7 @@ class WatchesTableGateWay
     public function getSearchByCategory($category) {
         $pdo=DBConnection::connect();
         //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
-        $sql = "CALL getgetWatchesByCategory ({$category})";
+        $sql = "CALL getWatchesByCategory ({$category})";
 
         //Förbereder hämtning från MYSQL databasen
         $statement = $pdo->prepare($sql);
