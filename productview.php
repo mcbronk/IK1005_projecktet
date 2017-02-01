@@ -1,4 +1,5 @@
 <?php include 'header.php'?>;
+<main>
 <div class="container-fluid product-bg row">
     <?php
 
@@ -9,11 +10,12 @@
             echo '<div class ="container-fluid product-bg row" >';
             echo '<div class="col-md-6 col-md-offset-3 ">';
 
-            echo ' <div class="thumbnail">';
+            echo ' <div class="thumbnail product-div">';
+            echo ' <h2>', $element['Marke'], '</h2><hr>';
             echo '  <img class="buy-img-inside" src="', $element['Bildurl'], '" alt="">';
             echo '   <div class="caption-full">';
             echo '  <hr>';
-            echo ' <h4>', $element['Marke'], '</h4>';
+            echo ' <h4>', $element['Namn'], '</h4>';
 
             echo '<p>', $element['Beskrivning'], '</p>';
             echo '<p></p><hr>';
@@ -32,4 +34,5 @@
 
     ?>
 </div>
+</main>
 <?php include 'footer.php'?>;

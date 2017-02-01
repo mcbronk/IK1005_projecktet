@@ -1,6 +1,6 @@
-
-
 <body>
+
+
 <?php include 'header.php'?>;
 
     <main>
@@ -18,7 +18,7 @@
                     echo '<h4>', $element['Namn'], '</h4>';
                     echo '<strong>Pris: ', $element['Pris'], '</strong>';
                     echo '<hr><br>';
-                    echo '<button type="button" class="buy-btns">Köp</button>';
+                    echo '<button type="button" class="buy-btns">Köp <span class="glyphicon glyphicon-shopping-cart"></span></button>';
                     echo '<a href="Controller.php?getWatchesById/', $element['ID'], '"><button type="button" class="info-btns">Information</button></a>
                 </div>';
                 }

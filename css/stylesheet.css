@@ -159,10 +159,11 @@ nav.breadcrumb {
 
 .product-div{
     outline: 1px solid #dddddd;
-margin-top: 5%;
-    margin-left: 5%;
+    margin-top: 5%;
+    margin-left: 3%;
     padding:5%;
-
+    -moz-box-shadow: 0 0 18px #363;
+    -webkit-box-shadow: 0 0 10px #333;
 
 }
 
