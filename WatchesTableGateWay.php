@@ -53,7 +53,8 @@ class WatchesTableGateWay
 }
 /*
 $filmer = new WatchesTableGateWay();
-var_dump($filmer->getWatchesByCategory('Klockor'));
-*/
+var_dump($filmer->getAllWatches());
+//var_dump($filmer->getWatchesByCategory('Klockor'));
 
+*/
 ?>

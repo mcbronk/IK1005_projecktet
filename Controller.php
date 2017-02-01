@@ -10,12 +10,15 @@ class Controller {
 
             $this->$queryarray[0]($queryarray[1]);
 
-
         } catch (Exception $ex) {
             echo $ex->getMessage();
             die();
 
         }
+    }
+
+    public function goToFirstPage() {
+
     }
 
 
@@ -34,7 +37,7 @@ class Controller {
         $watches=$model->getWatchesById($id);
         $dataArray=array('watch'=>$watches);
 
-        $this->display($dataArray,'./view.php');
+        $this->display($dataArray,'./productview.php');
     }
 
 
@@ -61,6 +64,8 @@ class Controller {
 
 
 }
+
+
 
 $controller = new Controller();
 $controller->doRequest($_SERVER['QUERY_STRING']);
