@@ -30,7 +30,7 @@ class Controller {
         $watches=$model->getAllWatches();
         $dataArray=array('watch'=>$watches);
 
-        $this->display($dataArray,'./view.php');
+        $this->display($dataArray,'./homepage.php');
 
     }
 
