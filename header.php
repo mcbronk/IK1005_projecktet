@@ -49,6 +49,7 @@
                                 <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." value="search">
                                 <span class="input-group-btn">
                           <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
                             </div>
                         </form>
                     </li>
@@ -70,5 +71,4 @@
         </div>
     </nav>
     <!-- End Nav-bar -->
-    <nav class="navbar navbar-default"></nav>
     <!-- Banner --->
