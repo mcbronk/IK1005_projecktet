@@ -32,7 +32,7 @@
                 </button>
                 <!-- Företagslogotyp -->
 
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="Controller.php?goToFirstPage">
                     <img src="img/tie.jpeg" tabindex="1" alt="Företagslogotyp" class="img" width="50" height="50"
                          style="margin-top: -14px">
                 </a>
@@ -42,10 +42,11 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Sökfunktion -->
+
                     <li>
-                        <form class="navbar-form navbar-left" method='post' action ='./search.php?Controller/getSearchByBrand'>
+                        <form class="navbar-form navbar-left"  action ='./Controller?/getSearchByBrand' method='post'>
                             <div class="input-group">
-                                <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök...">
+                                <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." value="search">
                                 <span class="input-group-btn">
                           <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                             </div>

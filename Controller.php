@@ -14,7 +14,7 @@ class Controller {
                 $this->{$queryarray[0]}($queryarray[1]);
             } else {
 
-                $this->getAllWatches();
+                $this->goToFirstPage();
             }
 
 

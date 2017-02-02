@@ -1,4 +1,4 @@
-<?php include 'header.php'?>;
+<?php include 'header.php'?>
 <main>
 <div class="container-fluid product-bg row">
     <?php
@@ -35,4 +35,4 @@
     ?>
 </div>
 </main>
-<?php include 'footer.php'?>;
+<?php include 'footer.php'?>
