@@ -3,12 +3,20 @@ include_once './WatchesTableGateWay.php';
 
 class Controller {
 
-    public function doRequest($queryString) {
+    public function doRequest($queryString)
+    {
         try {
 
-            $queryarray=explode('/',$queryString);
 
-            $this->$queryarray[0]($queryarray[1]);
+            $queryarray = explode('/', $queryString);
+            if (method_exists($this, $queryarray[0])) {
+
+                $this->{$queryarray[0]}($queryarray[1]);
+            } else {
+
+                $this->getAllWatches();
+            }
+
 
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -18,6 +26,11 @@ class Controller {
     }
 
     public function goToFirstPage() {
+        $model=new WatchesTableGateWay();
+        $watches=$model->getAllWatches();
+        $dataArray=array('watch'=>$watches);
+
+        $this->display($dataArray,'./view.php');
 
     }
 
