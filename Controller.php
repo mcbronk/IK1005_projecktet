@@ -75,6 +75,13 @@ class Controller {
         $this -> display($dataArray, './view.php');
     }
 
+    public function getSearchByBrand($brand) {
+        $model = new WatchesTableGateWay();
+        $categoryProduct = $model -> getWatchesByBrand($brand);
+        $dataArray = array("watch" => $categoryProduct);
+
+        $this -> display($dataArray, './search.php');
+    }
 
 }
 

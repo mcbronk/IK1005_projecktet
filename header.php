@@ -17,6 +17,9 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 </head>
 
+
+
+
 <div class="container-fluid">
     <!-- Nav-bar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -40,7 +43,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Sökfunktion -->
                     <li>
-                        <form class="navbar-form navbar-left" method="post" role="search">
+                        <form class="navbar-form navbar-left" method='post' action ='./search.php?Controller/getSearchByBrand'>
                             <div class="input-group">
                                 <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök...">
                                 <span class="input-group-btn">
