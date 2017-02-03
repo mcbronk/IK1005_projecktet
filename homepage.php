@@ -1,8 +1,5 @@
 <?php
-
-include 'header.php';
-include 'banner.php';
-include 'footer.php';
-
-
+include_once 'header.php';
+include_once 'banner.php';
+include_once 'footer.php';
 ?>

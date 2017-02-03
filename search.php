@@ -8,7 +8,6 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Exclusive Watches är en auktoriserad återförsäljare av exklusiva klockor.">
     <meta name="author" content="Emil Lindström,Erik Karlsson,Daniel Gustafsson,Martin Singh Virk">
-
     <link rel="stylesheet" href="./css/stylesheet.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -17,17 +16,9 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 </head>
 
-<?php include 'header.php'?>
 
-    <!-- Breadcrums-->
-    <!-- Breadcrums visas inte på index-sidan -->
 
-    <!-- Main -->
     <main>
-
-
-
-
 
         <div class="container-fluid product-bg row">
             <?php
@@ -44,7 +35,7 @@
                 echo '<hr><br>';
                 echo '<button type="button" class="buy-btns">Köp</button>';
                 echo $element['ID'];
-                echo '<a href="Controller.php?getSearchByBrand/', $element[$_POST], '"><button type="button" class="info-btns">Information</button></a>
+                echo '<a href="Controller.php?getWatchesById/', $element['ID'], '"><button type="button" class="info-btns">Information</button></a>
                 </div>';
 
             }
@@ -127,7 +118,7 @@
     <!-- End Main -->
 
 
-<?php include "footer.php"?>;
+
 
 </body>
 

@@ -24,7 +24,9 @@ if(isset($_GET['searchField'])) {
     $cont = new Controller();
     $search_term = $_GET['searchField'];
 
-    $search_results = $cont ->getSearchByBrand($search_term);
+   $cont ->getSearchByBrand($search_term);
+
+
 }
 ?>
 
@@ -52,7 +54,7 @@ if(isset($_GET['searchField'])) {
                     <!-- Sökfunktion -->
 
                     <li>
-                        <form class="navbar-form navbar-left"  action ='./Controller.php?/getSearchByBrand' method='get'>
+                        <form class="navbar-form navbar-left" action='./Controller.php?getSearchByBrand'  method='get'>
                             <div class="input-group">
                                 <input type="search" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
                                 <span class="input-group-btn">

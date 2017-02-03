@@ -15,6 +15,7 @@ class Controller {
             } else {
 
                 $this->goToFirstPage();
+
             }
 
 
@@ -53,16 +54,6 @@ class Controller {
         $this->display($dataArray,'./productview.php');
     }
 
-    public function display($dataArray,$viewTemplate) {
-        if(file_exists($viewTemplate)) {
-            extract($dataArray);
-
-            include_once ($viewTemplate);
-        }
-        else {
-            throw new Exception('Finns ingen sådan template');
-        }
-    }
 
 
     public function getWatchesByCategory($category) {
@@ -77,13 +68,23 @@ class Controller {
 
         $model = new WatchesTableGateWay();
 
-
-
         $categoryProduct = $model -> searchWatchByBrand($brand);
         $dataArray = array("watch" => $categoryProduct);
 
-        $this -> display($dataArray, './search.php');
+        $this -> display($dataArray, './view.php');
     }
+
+    public function display($dataArray,$viewTemplate) {
+        if(file_exists($viewTemplate)) {
+            extract($dataArray);
+
+            include_once ($viewTemplate);
+        }
+        else {
+            throw new Exception('Finns ingen sådan template');
+        }
+    }
+
 
 
 }
