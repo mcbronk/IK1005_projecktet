@@ -3,6 +3,9 @@ include_once './WatchesTableGateWay.php';
 
 class Controller {
 
+
+
+
     public function doRequest($queryString)
     {
         try {
@@ -64,11 +67,11 @@ class Controller {
         $this -> display($dataArray, './view.php');
     }
 
-    public function getSearchByBrand($brand) {
+    public function getSearchByBrand() {
 
         $model = new WatchesTableGateWay();
 
-        $categoryProduct = $model -> searchWatchByBrand($brand);
+        $categoryProduct = $model -> searchWatchByBrand();
         $dataArray = array("watch" => $categoryProduct);
 
         $this -> display($dataArray, './view.php');
@@ -88,6 +91,7 @@ class Controller {
 
 
 }
+
 
 
 

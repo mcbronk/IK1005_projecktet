@@ -51,26 +51,33 @@ class WatchesTableGateWay
         return $watches;
     }
 
-    public function searchWatchByBrand($search_term) {
 
+    public function searchWatchByBrand() {
 
-        $pdo=DBConnection::connect();
-        //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
-        $sql = "CALL getWatchesByMarke ('{$search_term}')";
+if(isset($_POST['searchField'])) {
+            $pdo = DBConnection::connect();
 
-        //Förbereder hämtning från MYSQL databasen
-        $statement = $pdo->prepare($sql);
-        $statement->bindParam(':Marke',filter_var($_POST ['searchField'], FILTER_SANITIZE_STRING));
+            //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
+            $stt = $_POST['searchField'];
+            $sql = "CALL getWatchesByMarke ('{$stt}')";
 
-        $statement->execute();
+            //Förbereder hämtning från MYSQL databasen
+            $statement = $pdo->prepare($sql);
+            $statement->bindParam(':Marke', filter_var($_POST ['searchField'], FILTER_SANITIZE_STRING));
 
-        //Hämtar ifrån databasen
-        $watches = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $pdo = null; //Stänger
-        return $watches;
+            $statement->execute();
+
+            //Hämtar ifrån databasen
+            $watches = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $pdo = null; //Stänger
+            return $watches;
+        } else {
+
+}
     }
 
 }
+
 
 //$filmer = new WatchesTableGateWay();
 //var_dump($filmer->searchWatchByBrand());

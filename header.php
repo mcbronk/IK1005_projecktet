@@ -17,19 +17,6 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 </head>
 
-<?php
-if(isset($_GET['searchField'])) {
-    require_once './Controller.php';
-
-    $cont = new Controller();
-    $search_term = $_GET['searchField'];
-
-   $cont ->getSearchByBrand($search_term);
-
-
-}
-?>
-
 <div class="container-fluid">
     <!-- Nav-bar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -54,11 +41,11 @@ if(isset($_GET['searchField'])) {
                     <!-- Sökfunktion -->
 
                     <li>
-                        <form class="navbar-form navbar-left" action='./Controller.php?getSearchByBrand'  method='get'>
+                        <form class="navbar-form navbar-left" action='Controller.php?getSearchByBrand'  method='post'>
                             <div class="input-group">
-                                <input type="search" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
+                                <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
                                 <span class="input-group-btn">
-                          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                          <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                                 </span>
                             </div>
                         </form>
@@ -70,7 +57,7 @@ if(isset($_GET['searchField'])) {
                         <ul class="dropdown-menu">
                             <li><a href="Controller.php?getWatchesByCategory/Klockor" tabindex="4">KLOCKOR</a></li>
                             <li><a href="Controller.php?getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
-                            <li><a href="Controller.php?getWatchesByCategory/Accesoarer" tabindex="6">ACCESOARER</a></li>
+                            <li><a href="Controller.php?getSearchByBrand/Rolex" tabindex="6">ACCESOARER</a></li>
                         </ul>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
                     <li><a href="#" data-toggle="modal" tabindex="8" data-target="#kundvagnsruta"><span
@@ -97,5 +84,9 @@ if(isset($_GET['searchField'])) {
         </div>
     </div>
 </div>
+<form action="" method="post">
+
+<nav></nav>
+</form>
     <!-- End Nav-bar -->
     <!-- Banner --->
