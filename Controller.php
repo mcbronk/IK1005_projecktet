@@ -76,11 +76,16 @@ class Controller {
     }
 
     public function getSearchByBrand($brand) {
+        global $_POST;
         $model = new WatchesTableGateWay();
+
+
+        if($_REQUEST['searchField']) {
         $categoryProduct = $model -> getWatchesByBrand($brand);
         $dataArray = array("watch" => $categoryProduct);
 
         $this -> display($dataArray, './search.php');
+    }
     }
 
 }

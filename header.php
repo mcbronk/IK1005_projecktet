@@ -18,7 +18,17 @@
 </head>
 
 
+<?php
+if(isset($_GET['searchField'])) {
+    require_once './Controller.php';
 
+    $cont = new Controller();
+
+    $search_term = $_GET['searchField'];
+
+    $search_results = $cont ->getSearchByBrand($search_term);
+}
+?>
 
 <div class="container-fluid">
     <!-- Nav-bar -->
@@ -44,9 +54,9 @@
                     <!-- Sökfunktion -->
 
                     <li>
-                        <form class="navbar-form navbar-left"  action ='./Controller?/getSearchByBrand' method='post'>
+                        <form class="navbar-form navbar-left"  action ='./Controller?/getSearchByBrand' method='get'>
                             <div class="input-group">
-                                <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." value="search">
+                                <input type="search" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
                                 <span class="input-group-btn">
                           <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                                 </span>

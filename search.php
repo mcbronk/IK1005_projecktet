@@ -17,7 +17,7 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 </head>
 
-<?php include 'header.php'?>;
+<?php include 'header.php'?>
 
     <!-- Breadcrums-->
     <!-- Breadcrums visas inte på index-sidan -->
@@ -32,7 +32,9 @@
         <div class="container-fluid product-bg row">
             <?php
 
-            foreach ($watch as $element) {
+
+
+             foreach ($watches as $element) {
 
                 echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 product-div">';
                 echo '<img src="', $element['Bildurl'], '" class="img-responsive" alt="', $element['Namn'], '">';
