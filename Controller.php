@@ -53,8 +53,6 @@ class Controller {
         $this->display($dataArray,'./productview.php');
     }
 
-
-
     public function display($dataArray,$viewTemplate) {
         if(file_exists($viewTemplate)) {
             extract($dataArray);
