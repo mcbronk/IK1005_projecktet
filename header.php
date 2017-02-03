@@ -80,5 +80,22 @@ if(isset($_GET['searchField'])) {
             </div>
         </div>
     </nav>
+    <!-- Kundvagnsruta -->
+    <div class="modal fade" id="kundvagnsruta">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">Kundvagn</h2>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <img src="img/kundvagn.png" alt="Kundvagnslogotyp" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- End Nav-bar -->
     <!-- Banner --->
