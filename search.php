@@ -34,7 +34,7 @@
 
 
 
-             foreach ($watches as $element) {
+             foreach ($watch as $element) {
 
                 echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 product-div">';
                 echo '<img src="', $element['Bildurl'], '" class="img-responsive" alt="', $element['Namn'], '">';

@@ -54,11 +54,9 @@ class WatchesTableGateWay
     public function searchWatchByBrand($search_term) {
 
 
-
-
         $pdo=DBConnection::connect();
         //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
-        $sql = "CALL getWatchesByCategory ('{$search_term}')";
+        $sql = "CALL getWatchesByMarke ('{$search_term}')";
 
         //Förbereder hämtning från MYSQL databasen
         $statement = $pdo->prepare($sql);
