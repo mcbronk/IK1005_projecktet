@@ -1,5 +1,5 @@
 <?php
-include_once './DBConnection.php';
+include_once 'DBConnection.php';
 
 class WatchesTableGateWay
 {

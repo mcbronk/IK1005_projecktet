@@ -1,5 +1,5 @@
 <?php
-include_once './IConnectDatabase.php';
+include_once 'IConnectDataBase.php';
 
 class DBConnection implements IConnectDatabase{
 

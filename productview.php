@@ -21,7 +21,7 @@
             echo '<p></p><hr>';
             echo '   <h4 class="pull-center"><strong>Pris: </strong>', $element['Pris'], ' SEK</h4>';
             echo '<p>Lager: ',$element['Lager'],'</p>';
-            echo '   <button type="button" class="buy-btns-2">Lägg i kundkorg</button>';
+            echo '<a href="cartController.php?addCart', $element['ID'], '"> <button type="button" class="buy-btns-2">Lägg i kundkorg</button></a>';
 
             echo '     </div>
    
