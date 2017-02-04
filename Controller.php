@@ -4,8 +4,6 @@ include_once './WatchesTableGateWay.php';
 class Controller {
 
 
-
-
     public function doRequest($queryString)
     {
         try {
@@ -49,7 +47,6 @@ class Controller {
 
 
     public function getWatchesById($id) {
-        var_dump($id);
         $model=new WatchesTableGateWay();
         $watches=$model->getWatchesById($id);
         $dataArray=array('watch'=>$watches);
@@ -67,15 +64,17 @@ class Controller {
         $this -> display($dataArray, './view.php');
     }
 
-    public function getSearchByBrand() {
+    public function getSearch() {
 
         $model = new WatchesTableGateWay();
 
-        $categoryProduct = $model -> searchWatchByBrand();
+        $categoryProduct = $model -> search();
         $dataArray = array("watch" => $categoryProduct);
 
         $this -> display($dataArray, './view.php');
     }
+
+
 
     public function display($dataArray,$viewTemplate) {
         if(file_exists($viewTemplate)) {

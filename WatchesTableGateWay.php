@@ -52,14 +52,14 @@ class WatchesTableGateWay
     }
 
 
-    public function searchWatchByBrand() {
+    public function search() {
 
 if(isset($_POST['searchField'])) {
             $pdo = DBConnection::connect();
 
             //Skapar upp en sql med parametern kategori som vi ska kunna hitta på
             $stt = $_POST['searchField'];
-            $sql = "CALL getWatchesByMarke ('{$stt}')";
+            $sql = "CALL getProductsBySearch ('{$stt}')";
 
             //Förbereder hämtning från MYSQL databasen
             $statement = $pdo->prepare($sql);

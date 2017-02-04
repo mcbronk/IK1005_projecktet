@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 include_once 'Controller.php';
 
 
+
 $controller = new Controller();
 $controller->doRequest($_SERVER['QUERY_STRING']);
 ?>

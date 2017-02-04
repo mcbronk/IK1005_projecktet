@@ -42,7 +42,7 @@
 
 
                     <li>
-                        <form class="navbar-form navbar-left" action='Controller.php?getSearchByBrand'  method='post'>
+                        <form class="navbar-form navbar-left" action='Controller.php?getSearch'  method='post'>
                             <div class="input-group">
                                 <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
                                 <span class="input-group-btn">
@@ -62,7 +62,7 @@
                         </ul>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
                     <li><a href="#" data-toggle="modal" tabindex="8" data-target="#kundvagnsruta"><span
-                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"> 1</span></a>
+                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"> </span></a>
                     </li>
                 </ul>
             </div>
@@ -85,28 +85,30 @@
                     <?php
 
 
-                    foreach ($cart as $element) {
+                    foreach ($productArray as $element) {
+                        if(isset($productArray)) {
+                            echo '<div class ="container-fluid product-bg row" >';
+                            echo '<div class="col-md-6 col-md-offset-3 ">';
 
-                        echo '<div class ="container-fluid product-bg row" >';
-                        echo '<div class="col-md-6 col-md-offset-3 ">';
+                            echo ' <div class="thumbnail product-div">';
+                            echo ' <h2>', $element['Marke'], '</h2><hr>';
+                            echo '  <img class="buy-img-inside" src="', $element['Bildurl'], '" alt="">';
+                            echo '   <div class="caption-full">';
+                            echo '  <hr>';
+                            echo ' <h4>', $element['Namn'], '</h4>';
 
-                        echo ' <div class="thumbnail product-div">';
-                        echo ' <h2>', $element['Marke'], '</h2><hr>';
-                        echo '  <img class="buy-img-inside" src="', $element['Bildurl'], '" alt="">';
-                        echo '   <div class="caption-full">';
-                        echo '  <hr>';
-                        echo ' <h4>', $element['Namn'], '</h4>';
+                            echo '<p>', $element['Beskrivning'], '</p>';
+                            echo '<p></p><hr>';
+                            echo '   <h4 class="pull-center"><strong>Pris: </strong>', $element['Pris'], ' SEK</h4>';
 
-                        echo '<p>', $element['Beskrivning'], '</p>';
-                        echo '<p></p><hr>';
-                        echo '   <h4 class="pull-center"><strong>Pris: </strong>', $element['Pris'], ' SEK</h4>';
-
-                        echo '     </div>
+                            echo '     </div>
    
 
             </div>
         </div>
 </div>';
+                        }
+
 
                     }
 
