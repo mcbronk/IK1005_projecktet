@@ -124,7 +124,7 @@
         </div>
     </div>
 </div>
-</main>
+
 
 <footer>
     <div class="row">

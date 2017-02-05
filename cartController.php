@@ -18,32 +18,40 @@ class cartController extends Controller
 
 
 
-        if($_SESSION['cart']){
-            $this->cart=array();
-        }
-        else{
-            $this->cart=$_SESSION['cart'];
-        }
+
+
+
+
     }
 
-    public function addToCart($id) {
+
+    public function addCart($id) {
         //lägg till i kundvagn och visa kundvagn sidan
 
-        $produkt[0]=0;
-        //om produktid inte finns lägg till produkt och sätt dess antal till 1
-        if(!array_key_exists($id, $this->cart)){
-            $this->cart[$id]=array($produkt[0],1);
-            $_SESSION['cart']=$this->cart;
-        }
-        //annars öka dess antal med 1
+        $model = new WatchesTableGateWay();
+        if($_SESSION['cart']) {
+            $this->cart = array();
+            //om produktid inte finns lägg till produkt och sätt dess antal till 1
+            if (!array_key_exists($id, $this->cart)) {
+                $produkt = $model->getWatchesById($id);
+                //Kopplar ID som ett keyvärde till arrayen
+                $this->cart = array($produkt);
+                //Carten läggs tillbaka i sessionen
+                $_SESSION['cart'] = $this->cart;
+            } //annars öka dess antal med 1
+            //   else {
+            //     $this->cart[$id][1]++;
+            //   $_SESSION['cart'] = $this->cart;
+            //}
+        } //slut stora if
         else{
-            $this->cart[$id][1]++;
-            $_SESSION['cart']=$this->cart;
+            $_SESSION ['cart'] = $this->cart; // get cart en tom array
+            $produkt = $model->getWatchesById($id);
+            $this->cart = array ($produkt);
+            $_SESSION['cart'] = $this->cart;
         }
 
-
-
-        $this -> showCart();
+        $this->showCart();
 
     }
     public function removeFromCart($id) {
@@ -59,14 +67,22 @@ class cartController extends Controller
     }
 
     public function showCart () {
+
         if ($_SESSION ['cart']) {
+            //Plockar ut alla värden ur bilmärken
+            $cont = new Controller();
             $productArray = $_SESSION ['cart'];
-            $this -> $this = $this ->display($productArray, './header.php');
-            $this -> $this -> display ($productArray, './header.php');
-        } else {
+            $dataArray = array("watch" => $productArray);
+            $cont->display($dataArray , 'cart.php');
+
+
 
         }
     }
+
+
+
+
 
 
 }

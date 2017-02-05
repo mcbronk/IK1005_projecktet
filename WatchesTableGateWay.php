@@ -72,7 +72,7 @@ if(isset($_POST['searchField'])) {
             $pdo = null; //Stänger
             return $watches;
         } else {
-
+            return null;
 }
     }
 

@@ -27,7 +27,7 @@
         ?>
     </div>
     <!-- First container -->
-    </div>
+
 </main>
 <!-- End Main -->
 
@@ -38,6 +38,6 @@
 <?php include_once "footer.php"?>;
 </body>
 
-</html>
+
 
 
