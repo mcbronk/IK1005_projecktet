@@ -11,7 +11,7 @@
             echo '<div class="col-md-6 col-md-offset-3 ">';
 
             echo ' <div class="thumbnail product-div">';
-            echo ' <h2>', $element['Marke'], '</h2><hr>';
+            echo ' <h2>', $element['Marke'], '</h2>';
             echo '  <img class="buy-img-inside" src="', $element['Bildurl'], '" alt="">';
             echo '   <div class="caption-full">';
             echo '  <hr>';
@@ -21,7 +21,7 @@
             echo '<p></p><hr>';
             echo '   <h4 class="pull-center"><strong>Pris: </strong>', $element['Pris'], ' SEK</h4>';
             echo '<p>Lager: ',$element['Lager'],'</p>';
-            echo '<a href="cartController.php?addCart/', $element['ID'], '"> <button type="button" class="buy-btns-2">Lägg i kundkorg</button></a>';
+            echo '<a href="Controller.php?addCart/', $element['ID'], '"> <button type="button" class="buy-btns-2">Lägg i kundkorg</button></a>';
 
             echo '     </div>
    

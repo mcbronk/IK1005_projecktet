@@ -76,11 +76,81 @@ if(isset($_POST['searchField'])) {
 }
     }
 
+    public function addWatch() {
+        try {
+            $pdo = DBConnection::connect();
+            //lägger till en bil använder namngivna platshållare tex (:regnummer)
+            $statement = $pdo->prepare('INSERT INTO h15_exlusivewatches (ID, Namn, '
+                . 'Marke, Kategori, Beskrivning, Pris, Lager, Bildurl) VALUES(:ID, :Namn, :Marke, :Kategori, :Beskrivning, :Pris, :Lager, :Bildurl)');
+            //binder de namngivna platshållaren till det postade data i $_POST[];
+            //saniterar det postade från tex html taggar
+            $statement->bindParam(':ID', filter_var(trim($_POST['id']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Namn', filter_var(trim($_POST['namn']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Marke', filter_var(trim($_POST['marke']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Kategori', filter_var(trim($_POST['kategori']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Beskrivning', filter_var(trim($_POST['beskrivning']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Pris', filter_var(trim($_POST['pris']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Lager', filter_var(trim($_POST['lager']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Bildurl', filter_var(trim($_POST['bildurl']), FILTER_SANITIZE_STRING));
+            //exekverar frågan
+            $statement->execute();
+            $pdo = NULL;
+        } catch (PDOException $pdoexp) {
+            $pdo = NULL;
+            throw new Exception('Databasfel- Gick inte att lägg till en bil');
+        }
+    }
+
+    public function updateWatch() {
+        try {
+
+
+            $pdo = DBConnection::connect();
+            //lägger till en bil använder namngivna platshållare tex (:regnummer)
+            $statement = $pdo->prepare('UPDATE h15_exlusivewatches SET id=:ID, '
+                . 'namn=:Namn, marke=:Marke, kategori=:Kategori, beskrivning=:Beskrivning, pris = :Pris, lager = :Lager, bildurl = :Bildurl WHERE id=:ID');
+            //binder de namngivna platshållaren till det postade data i $_POST[];
+            //saniterar det postade från tex html taggar
+            $statement->bindParam(':ID', filter_var(trim($_POST['id']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Namn', filter_var(trim($_POST['namn']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Marke', filter_var(trim($_POST['marke']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Kategori', filter_var(trim($_POST['kategori']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Beskrivning', filter_var(trim($_POST['beskrivning']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Pris', filter_var(trim($_POST['pris']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Lager', filter_var(trim($_POST['lager']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':Bildurl', filter_var(trim($_POST['bildurl']), FILTER_SANITIZE_STRING));
+            //exekverar frågan
+            $statement->execute();
+
+            $pdo = NULL;
+        } catch (PDOException $pdoexp) {
+            $pdo = NULL;
+            throw new Exception('Databasfel- Gick inte att lägg till en bil');
+        }
+    }
+
+    public function deleteWatch($id) {
+        try {
+            $pdo = DBConnection::connect();
+            //tar bort en bil på regnr använder namngivna platshållare tex (:regnummer)
+            $statement = $pdo->prepare('DELETE FROM h15_exlusivewatches WHERE id=:ID');
+            //binder den namngivna platshållaren till parameterna $regnr
+            $statement->bindParam(':ID', $id);
+            //exekverar frågan
+            $statement->execute();
+            //Stänger
+            $this->pdocon = NULL;
+        } catch (PDOException $pdoexp) {
+            $this->pdocon = NULL;
+            throw new Exception('Databasfel- Gick inte att ta bort bil');
+        }
+    }
+
 }
 
 
 //$filmer = new WatchesTableGateWay();
-//var_dump($filmer->searchWatchByBrand());
+//var_dump($filmer->getAllWatches();
 //var_dump($filmer->getWatchesByCategory('Klockor'));
 
 

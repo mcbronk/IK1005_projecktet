@@ -8,52 +8,59 @@
  */
 include_once './Controller.php';
 include_once './WatchesTableGateWay.php';
-
 session_start();
 class cartController extends Controller
 {
 
+
     private $cart;
     function __construct() {
-
-
-
-
-
-
+        $this->cart = array();
 
     }
 
 
-    public function addCart($id) {
-        //lägg till i kundvagn och visa kundvagn sidan
+    public function addCart($id)
+    {
+
+
 
         $model = new WatchesTableGateWay();
-        if($_SESSION['cart']) {
-            $this->cart = array();
-            //om produktid inte finns lägg till produkt och sätt dess antal till 1
+        if ($_SESSION['cart']) {
+
+
+            $this->cart = $_SESSION['cart'];
+
             if (!array_key_exists($id, $this->cart)) {
                 $produkt = $model->getWatchesById($id);
-                //Kopplar ID som ett keyvärde till arrayen
-                $this->cart = array($produkt);
-                //Carten läggs tillbaka i sessionen
+
+                $this->cart[$id] = array($produkt[0] ,1);
+
                 $_SESSION['cart'] = $this->cart;
-            } //annars öka dess antal med 1
-            //   else {
-            //     $this->cart[$id][1]++;
-            //   $_SESSION['cart'] = $this->cart;
-            //}
-        } //slut stora if
-        else{
-            $_SESSION ['cart'] = $this->cart; // get cart en tom array
+
+            }
+            else {
+
+                $this->cart[$id][1] ++;
+                $_SESSION['cart'] = $this->cart;
+            }
+            //ingen session finns
+        } else {
+
+            $_SESSION['cart'] = $this->cart;
             $produkt = $model->getWatchesById($id);
-            $this->cart = array ($produkt);
+
+            $this->cart[$id] = array($produkt[0], 1);
+
             $_SESSION['cart'] = $this->cart;
         }
+      //  $this->showCart();
 
-        $this->showCart();
 
-    }
+
+
+        }
+
     public function removeFromCart($id) {
         //ta bort från kundvagn och visa kundvagns sidan
         if(array_key_exists($id, $this->cart)){
@@ -69,11 +76,12 @@ class cartController extends Controller
     public function showCart () {
 
         if ($_SESSION ['cart']) {
+
             //Plockar ut alla värden ur bilmärken
             $cont = new Controller();
             $productArray = $_SESSION ['cart'];
-            $dataArray = array("watch" => $productArray);
-            $cont->display($dataArray , 'cart.php');
+            $dataArray = array("product" => $productArray);
+            $cont->display($dataArray , 'homepage.php');
 
 
 

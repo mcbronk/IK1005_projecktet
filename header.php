@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sv-se" xml:lang="sv-se">
 <head>
@@ -58,11 +59,11 @@
                         <ul class="dropdown-menu">
                             <li><a href="Controller.php?getWatchesByCategory/Klockor" tabindex="4">KLOCKOR</a></li>
                             <li><a href="Controller.php?getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
-                            <li><a href="Controller.php?getSearchByBrand/Rolex" tabindex="6">ACCESOARER</a></li>
+                            <li><a href="cartController.php?showCart" tabindex="6">ACCESOARER</a></li>
                         </ul>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
                     <li><a href="#" data-toggle="modal" tabindex="8" data-target="#kundvagnsruta"><span
-                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"> </span></a>
+                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php $_SESSION['cart'][1] ?> </span></a>
                     </li>
                 </ul>
             </div>

@@ -79,12 +79,13 @@
                 <!--body(form)-->
                 <div class="modal-body">
                     <!-- <form role="form"> gav error i w3c validator, Emil sa att den används för Bootstrap -->
+                    <form action="Controller.php?doAdmin" method="post">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Användarnamn">
+                        <input type="text" class="form-control" name="username" value="" placeholder="Användarnamn">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Lösenord">
+                        <input type="password" class="form-control" name="passwd" value="" placeholder="Lösenord">
                     </div>
                     <!--  </form> -->
 
@@ -92,6 +93,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-primary btn-block">Logga in</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

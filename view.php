@@ -18,7 +18,7 @@
             echo '<h3>', $element['Namn'], '</h3>';
             echo '<strong>Pris: ', $element['Pris'], '</strong>';
             echo '<hr><br>';
-            echo '<button type="button" class="buy-btns">Köp <span class="glyphicon glyphicon-shopping-cart"></span></button>';
+            echo '<a href="Controller.php?addCart/', $element['ID'],'"><button type="button" class="buy-btns">Köp <span class="glyphicon glyphicon-shopping-cart"></span></button></a>';
             echo '<a href="Controller.php?getWatchesById/', $element['ID'], '"><button type="button" class="info-btns">Information</button></a>
                 </div>';
         }
