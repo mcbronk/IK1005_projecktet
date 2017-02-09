@@ -26,10 +26,10 @@
                         </thead>
                         <tbody>
                 <?php
-$summa;
+$summa=0;
 
                 if(is_array($product)) {
-
+                    $summa=0;
                     foreach ($product as $element) {
                         echo '<tr>';
                         echo '<td>',$element[0]['ID'],'</td>';

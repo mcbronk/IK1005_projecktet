@@ -333,11 +333,12 @@ class Controller {
 
             $productArray = $_SESSION ['cart'];
             $dataArray = array("product" => $productArray);
-            $this->display($dataArray , 'view.php');
+
 
 
 
         }
+        $this->display($dataArray , 'cartV2.php');
     }
 
 

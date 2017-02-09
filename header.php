@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- För att alla webbläsare skall stödja Media Queries -->
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <?php session_start(); ?>
 </head>
 
 <div class="container-fluid">
@@ -61,8 +62,8 @@
                             <li><a href="cartController.php?showCart" tabindex="6">ACCESOARER</a></li>
                         </ul>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
-                    <li><a href="#" data-toggle="modal" tabindex="8" data-target="#kundvagnsruta"><span
-                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"> </span></a>
+                    <li><a href="cartController.php?showCart"  tabindex="8" ><span
+                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php echo $_SESSION['antalprodukter']; ?></span></a>
                     </li>
                 </ul>
             </div>
