@@ -3,8 +3,6 @@ include_once './WatchesTableGateWay.php';
 
 session_start();
 class Controller {
-    private $user;
-    private $psw;
 
     private $cart;
     function __construct() {
@@ -46,7 +44,6 @@ class Controller {
     }
 
     public function doAdmin() {
-
 
         $user = 'admin';
         $psw = 'admin';
@@ -298,9 +295,7 @@ class Controller {
         }
     }
 
-
     public function endSession() {
-
         session_destroy();
         $this->getAllWatches();
     }
