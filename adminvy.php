@@ -5,7 +5,7 @@ include 'header.php';
 
 <main>
     <div class="table-responsive" style="margin: 5%" >
-        <h2>Produkter</h2>
+        <h2>Administera produkter</h2>
         <br><br>
         <a href='Controller.php?addView'><button type="button" class="btn btn-info" >Lägg till ny produkt!</button></a><br>
         <br>
@@ -37,8 +37,8 @@ include 'header.php';
                 echo '<td>', $element['Kategori'], '</td>';
                 echo '<td class="col-4">', $element['Lager'], '</td>';
                // echo '<td>', $element['Beskrivning'], '</td>';
-                echo '<td><button type="button" class="btn btn-info" ><a href=Controller.php?updateView/',$element['ID'],'>Uppdatera</a></button></td>';
-                echo '<td><button type="button" class="btn btn-danger"><a href=Controller.php?deleteWatch/',$element['ID'],'>Ta Bort</a></button></td>';
+                echo '<td><a href=Controller.php?updateView/',$element['ID'],'><button type="button" class="btn btn-info" >Uppdatera</button></a></td>';
+                echo '<td><a href=Controller.php?deleteWatch/',$element['ID'],'><button type="button" class="btn btn-danger" >Ta Bort</button></a></td>';
                 echo '</td>';
             }
            ?>

@@ -1,12 +1,18 @@
 <?php
 include_once './WatchesTableGateWay.php';
+include_once 'validationWatch.php';
 
 session_start();
 class Controller {
+    private $user;
+    private $psw;
+    private $arrayData;
+
 
     private $cart;
     function __construct() {
         $this->cart = array();
+        $this->arrayData = array();
 
     }
 
@@ -44,6 +50,7 @@ class Controller {
     }
 
     public function doAdmin() {
+
 
         $user = 'admin';
         $psw = 'admin';
@@ -122,13 +129,28 @@ class Controller {
 
       // if ($_SESSION['loggedin'] == TRUE) {
 
-        $model = new WatchesTableGateWay();
+        $validateForm = new validationWatch();
+        $errormsg = $validateForm -> validateWatchForm();
 
-        $model -> addWatch();
-        $product = $model ->getAllWatches();
+        if(count($errormsg) <= 0) {
 
-             $dataArray = array("watch" => $product);
-        $this -> display($dataArray, './adminvy.php');
+            $model = new WatchesTableGateWay();
+
+            $model->addWatch();
+            $product = $model->getAllWatches();
+
+            $dataArray = array("watch" => $product);
+            $this->display($dataArray, './adminvy.php');
+     }
+
+        else {
+
+            $this->arrayDataForView['errormessages']=$errormsg;
+            $this->arrayDataForView['postatdata']=$_POST;
+            $this->display($this -> arrayDataForView, './admin.php');
+
+
+        }
 
 
       //  }//end yttre if för login
@@ -185,7 +207,7 @@ class Controller {
     //Metod för addVy
     public function addView() {
 
-        // if ($_SESSION['loggedin'] == TRUE) {
+       //  if ($_SESSION['loggedin'] == TRUE) {
 
         $model = new WatchesTableGateWay();
 
@@ -196,9 +218,9 @@ class Controller {
         $this -> display($dataArray, './admin.php');
 
 
-        //  }//end yttre if för login
+          }//end yttre if för login
 
-    }
+   // }
 
 
 //Metod för att lägga till i kundvagnen.
@@ -295,7 +317,9 @@ class Controller {
         }
     }
 
+
     public function endSession() {
+
         session_destroy();
         $this->getAllWatches();
     }
