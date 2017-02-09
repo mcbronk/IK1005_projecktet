@@ -63,7 +63,7 @@
                         </ul>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
                     <li><a href="#" data-toggle="modal" tabindex="8" data-target="#kundvagnsruta"><span
-                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php $_SESSION['cart'][1] ?> </span></a>
+                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"> </span></a>
                     </li>
                 </ul>
             </div>
