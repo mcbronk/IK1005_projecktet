@@ -49,21 +49,62 @@ class Controller {
 
     }
 
-    public function doAdmin() {
-
-
+    public function doLogin() {
         $user = 'admin';
         $psw = 'admin';
 
         if($_POST['username'] == $user && $_POST['passwd'] == $psw) {
+            $_SESSION['loggedin'] = TRUE;
             $model = new WatchesTableGateWay();
             $watches = $model->getAllWatches();
             $dataArray = array('watch' => $watches);
 
             $this->display($dataArray, './adminvy.php');
         } else {
-            echo 'Felaktig information.';
+
+            $this->arrayDataForView['postatdata']=$_POST;
+
+
+            $this->display($this -> arrayDataForView, './loginForm.php');
         }
+
+
+    }
+
+    public function logOut() {
+
+            $_SESSION['loggedin'] = FALSE;
+            $model = new WatchesTableGateWay();
+            $watches = $model->getAllWatches();
+            $dataArray = array('watch' => $watches);
+
+            $this->display($dataArray, './view.php');
+
+
+
+    }
+
+    public function doAdmin() {
+
+        if($_SESSION['loggedin'] == TRUE) {
+
+            $model = new WatchesTableGateWay();
+            $watches = $model->getAllWatches();
+            $dataArray = array('watch' => $watches);
+
+            $this->display($dataArray, './adminvy.php');
+
+        } else {
+            $model = new WatchesTableGateWay();
+            $watches = $model->getAllWatches();
+            $dataArray = array('watch' => $watches);
+
+            $this->display($dataArray, './loginForm.php');
+
+
+        }
+
+
 
     }
     // Metod för att hämta alla produkter
