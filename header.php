@@ -17,7 +17,7 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <?php session_start(); ?>
 </head>
-
+<body>
 <div class="container-fluid">
     <!-- Nav-bar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -71,7 +71,7 @@
     </nav>
 
     <?php include_once ('./cart.php')?>
-</div>
+
 <form action="" method="post">
 
 <nav></nav>

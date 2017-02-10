@@ -1,4 +1,4 @@
-<body>
+
 <?php include_once 'header.php'?>;
 
 
@@ -36,7 +36,7 @@
 <!-- End Footer -->
 
 <?php include_once "footer.php"?>;
-</body>
+
 
 
 
