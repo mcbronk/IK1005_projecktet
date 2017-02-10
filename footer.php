@@ -63,7 +63,7 @@
     <div class="col-md-3 article-main">
         <dl>
             <dt class="h3text">Webmaster</dt>
-            <dd><a href="#" tabindex="14" data-toggle="modal" data-target="#popUpWindow" class="modul-link"
+            <dd><a href="Controller.php?doAdmin" tabindex="14"
                    title="Admins"><span class="glyphicon glyphicon-cog"></span></a></dd>
         </dl>
     </div>

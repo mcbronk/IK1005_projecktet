@@ -91,7 +91,10 @@ nav.breadcrumb {
     background: -moz-linear-gradient(#0F705B, #1abc9c);
     background: linear-gradient(#0F705B, #1abc9c);
 }
+.loginStyle {
 
+    background-color:#1abc9c ;
+}
 
 .product-bg {
 

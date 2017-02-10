@@ -10,7 +10,8 @@
 
 
     <div class="container" style="padding-left: 5%; padding-top: 5%;">
-        <H2>Uppdatera produkt!</H2><hr>
+        <H2>Produkt<?php echo $watch[0]['ID'] ?><?php echo $watch[0]['Namn'] ?></H2><hr>
+
 
         <form name="name" action="Controller.php?updateWatch" method="post">
 
