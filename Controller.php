@@ -40,20 +40,37 @@ class Controller {
         }
     }
 
-    public function goToFirstPage() {
-        $model=new WatchesTableGateWay();
-        $watches=$model->getAllWatches();
-        $dataArray=array('watch'=>$watches);
 
-        $this->display($dataArray,'./homepage.php');
+    //Metod för att sköta templates.
+    public function display($dataArray,$viewTemplate) { //display metod.
+        if(file_exists($viewTemplate)) { //om det vn i $viewtemplade existerar.
+            extract($dataArray); //extrahera arrayen av data
+
+            include_once ($viewTemplate); //ikludera vyn
+        }
+        else {
+            throw new Exception('Finns ingen sådan template');
+        }
+    }
+
+    public function goToFirstPage() { //Funktion för att gå till förrsta sidan.
+        $model=new WatchesTableGateWay(); //Skapar upp ett objekt att WatchesTableGateWay
+        $watches=$model->getAllWatches(); // anropar modellens metod getAllWatches för att hämta alla produkter från databasen. Spar resultatet till $watches.
+        $dataArray=array('watch'=>$watches); // Skapar upp en array $dataArray och fyller den med $watches från ovan. namnger denna sedan till 'watches'.
+
+        $this->display($dataArray,'./homepage.php'); // Kör funtionen display och laddar vyn med, det sparade datat från getAllWatches och presenterar det i vyn homepage.php
 
     }
 
-    public function doLogin() {
-        $user = 'admin';
-        $psw = 'admin';
+    public function doLogin() { //Metod för adminlogin
 
-        if($_POST['username'] == $user && $_POST['passwd'] == $psw) {
+
+        $validateForm = new validationWatch(); //Skapar ett objekt av validatewatch för att kunna göra formulärsvalideringar.
+        $errormsg = $validateForm -> validateWatchForm(); // $validatewatch anropar metoden validateWatchForm och spar eventuella error i errormsg.
+
+
+        if(count($errormsg) <= 0) { //FInns det error går vi till else, annars sätts $_SESSION['loggedin'] till TRUE och vi kör likt en vanlig function.
+
             $_SESSION['loggedin'] = TRUE;
             $model = new WatchesTableGateWay();
             $watches = $model->getAllWatches();
@@ -62,44 +79,45 @@ class Controller {
             $this->display($dataArray, './adminvy.php');
         } else {
 
-            $this->arrayDataForView['postatdata']=$_POST;
+            $this->arrayDataForView['postatdata']=$_POST; //Kom vi inte in. Spar vi det som skrivits in i formulären och skriver ut dom i inputboxarna igen.
+            $this->arrayDataForView['errormessages']=$errormsg; // Spar felmeddelanded och visar dom sedan i vyn.
 
 
-            $this->display($this -> arrayDataForView, './loginForm.php');
+            $this->display($this -> arrayDataForView, './loginForm.php'); // Laddar vyn loginForm med ata från $_POST och $errormsg.
         }
 
 
     }
 
-    public function logOut() {
+    public function logOut() { //För att logga ut.
 
-            $_SESSION['loggedin'] = FALSE;
+            $_SESSION['loggedin'] = FALSE; //Sätter loggedin till FALSE, på så sätt kan man inte utföra CRUD.
             $model = new WatchesTableGateWay();
-            $watches = $model->getAllWatches();
+            $watches = $model->getAllWatches(); //Resten likt ovanstående exempel.
             $dataArray = array('watch' => $watches);
 
-            $this->display($dataArray, './view.php');
+            $this->display($dataArray, './loginForm.php');
 
 
 
     }
 
-    public function doAdmin() {
+    public function doAdmin() { //För att komma till adminSidan
 
-        if($_SESSION['loggedin'] == TRUE) {
+        if($_SESSION['loggedin'] == TRUE) { //KOlla om $_SESSION är TRUE
 
             $model = new WatchesTableGateWay();
             $watches = $model->getAllWatches();
             $dataArray = array('watch' => $watches);
 
-            $this->display($dataArray, './adminvy.php');
+            $this->display($dataArray, './adminvy.php');  //LIkt ovanstånde procedur, laddar sedan vyn och skickar vidare användaren till adminsidan för CRUD.
 
         } else {
             $model = new WatchesTableGateWay();
             $watches = $model->getAllWatches();
             $dataArray = array('watch' => $watches);
 
-            $this->display($dataArray, './loginForm.php');
+            $this->display($dataArray, './loginForm.php'); //Annars skicka till loginsidan.
 
 
         }
@@ -152,23 +170,13 @@ class Controller {
 
 
 
-    //Metod för att sköta templates.
-    public function display($dataArray,$viewTemplate) {
-        if(file_exists($viewTemplate)) {
-            extract($dataArray);
 
-            include_once ($viewTemplate);
-        }
-        else {
-            throw new Exception('Finns ingen sådan template');
-        }
-    }
 
 
     //Metod för att lägga till klocka.
     public function addWatch() {
 
-      // if ($_SESSION['loggedin'] == TRUE) {
+       if ($_SESSION['loggedin'] == TRUE) {
 
         $validateForm = new validationWatch();
         $errormsg = $validateForm -> validateWatchForm();
@@ -196,12 +204,17 @@ class Controller {
 
       //  }//end yttre if för login
 
-        }
+        } else {
+
+           $this->doAdmin();
+
+       }
+    }
 
         //Metod för att uppdatera klocka.
     public function updateWatch() {
 
-        // if ($_SESSION['loggedin'] == TRUE) {
+         if ($_SESSION['loggedin'] == TRUE) {
 
         $model = new WatchesTableGateWay();
 
@@ -212,19 +225,30 @@ class Controller {
         $this -> display($dataArray, './adminvy.php');
 
 
-        //  }//end yttre if för login
+          
 
-    }
+    } else
+{
+
+$this->doAdmin();
+}
+}
 
 
     //Metod för att ta bort klocka.
     public function deleteWatch($id) {
+
+        if($_SESSION['loggedin'] == TRUE) {
         $model=new WatchesTableGateWay();
         $model->deleteWatch($id);
         $watches=$model->getAllWatches();
         $dataArray=array('watch'=>$watches);
 
         $this->display($dataArray,'./adminvy.php');
+    } else {
+
+        $this->doAdmin();
+        }
     }
 
     //Metod för att visa uppdateringsvyn vid admin.
@@ -267,38 +291,37 @@ class Controller {
 //Metod för att lägga till i kundvagnen.
     public function addCart($id)
     {
-        $model = new WatchesTableGateWay();
-        if ($_SESSION['cart']) {
+        $model = new WatchesTableGateWay(); //Skapar ett objekt av modellen.
+        if ($_SESSION['cart']) { //Finns det en $_SESSION['cart']array går vi vidare annars skickas vi till else.
 
 
 
-            $this->cart = $_SESSION['cart'];
+            $this->cart = $_SESSION['cart']; //Slänger över $_SESSION['cart']till en array som vi sedan modifierar.
 
-            if (!array_key_exists($id, $this->cart)) {
-                $produkt = $model->getWatchesById($id);
+            if (!array_key_exists($id, $this->cart)) { //Finns inte id i arrayen skapas ett.
+                $produkt = $model->getWatchesById($id);  //Hämtar produkter
 
-                $this->cart[$id] = array($produkt[0], 1);
-
-                $_SESSION['cart'] = $this->cart;
+                $this->cart[$id] = array($produkt[0], 1); //Lägger till varan i arrayen. Sätter antal till 1.
+                $_SESSION['cart'] = $this->cart; //Slänger tillbaka arrayen till $_SESSION.
 
             } else {
 
-                $this->cart[$id][1]++;
-                $_SESSION['cart'] = $this->cart;
+                $this->cart[$id][1]++; //Fanns id i arrayen ökar vi antal med 1.
+                $_SESSION['cart'] = $this->cart; //Slänger tillbaka arrayen till $_SESSION
             }
 
             //ingen session finns
         } else {
 
+//Fanns inte skapas en $_SESSION
+            $_SESSION['cart'] = $this->cart; //$this->cart, arrayen vi deklarerade i början slängs in i $_SESSION
+            $produkt = $model->getWatchesById($id); //Hämtar produkter fårm modellen.
 
-            $_SESSION['cart'] = $this->cart;
-            $produkt = $model->getWatchesById($id);
+            $this->cart[$id] = array($produkt[0], 1); //Spar varan i en array.
 
-            $this->cart[$id] = array($produkt[0], 1);
-
-            $_SESSION['cart'] = $this->cart;
+            $_SESSION['cart'] = $this->cart; //Slänger in arrayen till $_SESSION.
         }
-         $this->showCart();
+         $this->showCart(); //Efter allt detta, anropas funktionen showCart.
 
 
 
@@ -306,37 +329,37 @@ class Controller {
     }
 
     //Metod för att minska i kundvagnen.
-    public function decreaseCart($id) {
+    public function decreaseCart($id) { //LIKT ovanstående förklaring.
         if ($_SESSION['cart']) {
             $this->cart = $_SESSION['cart'];
-            //om regnummer finns så ta bort ett från antal
+
             if (array_key_exists($id, $this->cart)) {
                 $this->cart[$id][1] --;
-                //unset($this->cart[$regnr]); // = $bilarArray[0];
+
             }
-            //om noll antal ta bort hela "bilen" från cartarrayen
-            if ($this->cart[$id][1] <= 0) {
+
+            if ($this->cart[$id][1] <= 0) { //Men är antalen mindre än 0 tas varan bort ur kundvagnen. med functionen unset($this->cart[$id]);
                 unset($this->cart[$id]);
             }
             $_SESSION['cart'] = $this->cart;
-            //visar kundvagn nu med minskat antal för produkten
+
             $this->showCart();
         }
     }
 
 
     //Metod för att öka i kundvagnen.
-    public function increaseCart($id) {
+    public function increaseCart($id) { //Samma lika
         if ($_SESSION['cart']) {
             $this->cart = $_SESSION['cart'];
-            //om regnummer finns så ta bort ett från antal
+
             if (array_key_exists($id, $this->cart)) {
                 $this->cart[$id][1] ++;
-                //unset($this->cart[$regnr]); // = $bilarArray[0];
+
             }
 
             $_SESSION['cart'] = $this->cart;
-            //visar kundvagn nu med minskat antal för produkten
+
             $this->showCart();
         }
     }
@@ -346,33 +369,33 @@ class Controller {
     public function removeFromCart($id) {
         if ($_SESSION['cart']) {
             $this->cart = $_SESSION['cart'];
-            //om regnummer finns så ta bort ett från antal
+
             if (array_key_exists($id, $this->cart)) {
                 unset($this->cart[$id]);
-                //unset($this->cart[$regnr]); // = $bilarArray[0];
+
             }
-            //om noll antal ta bort hela "bilen" från cartarrayen
+
             $_SESSION['cart'] = $this->cart;
-            //visar kundvagn nu med minskat antal för produkten
+
             $this->showCart();
         }
     }
 
 
-    public function endSession() {
+    public function endSession() { //Vid tryck på logga ut, körs session_destroy() och vi anropar funktionen getAllWatches.
 
         session_destroy();
         $this->getAllWatches();
     }
 
 //Metod för att visa kundvagnen.
-    public function showCart () {
+    public function showCart () { //För att visa kundvagn.
 
         if ($_SESSION ['cart']) {
 
             //Plockar ut alla värden ur bilmärken
 
-            $productArray = $_SESSION ['cart'];
+            $productArray = $_SESSION ['cart']; //hämtar data från $_SESSION
             $dataArray = array("product" => $productArray);
 
 

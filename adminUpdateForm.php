@@ -18,7 +18,9 @@
 
             <div class="row test">
 
-                <div class="col-md-8">
+
+
+
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label><span style="color: red"></span></label>
@@ -59,10 +61,11 @@
                     <textarea class="form-control"  type="text" name="beskrivning" placeholder="Beskrivning" rows="5"><?php echo $watch[0]['Beskrivning'] ?></textarea>
                     <div class="row">
                         <div class="col-md-12 form-group">
-                            <button class="btn pull-right" type="submit">Send</button>
+                            <button class="btn pull-right btn-success" type="submit">Uppdatera</button>
                         </div>
                     </div>
-                </div>
+
+
             </div>
 
         </form>

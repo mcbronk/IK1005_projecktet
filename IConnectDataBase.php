@@ -9,5 +9,8 @@ interface IConnectDatabase {
     CONST USER = 'db30';
     CONST PASSWORD = 'FJJAcyMU';
     public static function connect();
+
+    //Skapar ett interface där vi sätter HOST, USER, PASSWORD för våran mysql koppling.
+    //Den statiska funktionen connect(); anropas sedan för att ansluta.
 }
 ?>

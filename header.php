@@ -33,8 +33,11 @@
                 <a class="navbar-brand" href="Controller.php?goToFirstPage">
                     <img src="img/tie.jpeg" tabindex="1" alt="Företagslogotyp" class="img" width="50" height="50"
                          style="margin-top: -14px">
+
                 </a>
                 <a class="navbar-brand" href="#">Exclusive Watches</a>
+
+
 
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -61,8 +64,20 @@
                             <li><a href="Controller.php?getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
                             <li><a href="cartController.php?showCart" tabindex="6">ACCESOARER</a></li>
                         </ul>
+                        <?php if($_SESSION['loggedin'] == TRUE) {
+
+                            echo '<li class="dropdown">
+                        <a href="produkter.html" tabindex="3" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Controller.php?doAdmin" tabindex="7">CRUD</a></li>
+                            <li><a href="Controller.php?logOut" tabindex="8">Logga ut</a></li>
+                            
+                        </ul>';
+
+                        } ?>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
-                    <li><a href="cartController.php?showCart"  tabindex="8" ><span
+                    <li><a href="cartController.php?showCart"  tabindex="9" ><span
                                 class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php echo $_SESSION['antalprodukter']; ?></span></a>
                     </li>
                 </ul>
