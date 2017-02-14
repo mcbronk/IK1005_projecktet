@@ -82,6 +82,7 @@ class Cart
 
             if ($this->cart[$id][1] <= 0) { //Men är antalen mindre än 0 tas varan bort ur kundvagnen. med functionen unset($this->cart[$id]);
                 unset($this->cart[$id]);
+                $_SESSION['kundvagncount']=0;
             }
             $_SESSION['cart'] = $this->cart;
 
@@ -114,7 +115,7 @@ class Cart
 
             if (array_key_exists($id, $this->cart)) {
                 unset($this->cart[$id]);
-
+                $_SESSION['kundvagncount']=0;
             }
 
             $_SESSION['cart'] = $this->cart;
