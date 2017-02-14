@@ -123,20 +123,25 @@ class Cart
         }
     }
 //Metod för att visa kundvagnen.
-public function showCart () { //För att visa kundvagn.
+    public function showCart () {
 
-    if ($_SESSION ['cart']) {
+        if ($_SESSION ['cart']) {
 
-        //Plockar ut alla värden ur bilmärken
+            //Plockar ut alla värden ur bilmärken
+            $totalcounter =0;
+            foreach($_SESSION['cart'] as $kundvagnscounter){
 
-        $productArray = $_SESSION ['cart']; //hämtar data från $_SESSION
-        $dataArray = array("product" => $productArray);
+                $totalcounter = $totalcounter + $kundvagnscounter[1];
+            }
+            $_SESSION['kundvagncount']=$totalcounter;
+
+            $productArray = $_SESSION ['cart'];
+            $dataArray = array("product" => $productArray,'counter'=>$totalcounter);
 
 
 
 
+        }
+        $this->view->display($dataArray , 'cartV2');
     }
-   // print_r($dataArray);
-    $this -> view ->display($dataArray, 'cartV2');
-}
 }

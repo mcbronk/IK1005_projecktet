@@ -61,7 +61,7 @@
                         } ?>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
                     <li><a href="index.php?Cart/showCart" tabindex="9" ><span
-                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php echo $_SESSION['antalprodukter']; ?></span></a>
+                                class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php echo $_SESSION['kundvagncount']; ?></span></a>
                     </li>
                 </ul>
             </div>
