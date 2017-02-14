@@ -12,11 +12,11 @@
         </a>
 
         <a class="link-watchLogo" href="http://www.hublot.com/en/" tabindex="11" target="_blank">
-            <img src="./img/hublot-logo.png" alt="Hubot logotyp" class="img-circle img-size-main">
+            <img src="img/hublot-logo.png" alt="Hubot logotyp" class="img-circle img-size-main">
         </a>
 
         <a class="link-watchLogo" href="https://www.omegawatches.com/" tabindex="12" target="_blank">
-            <img src="./img/omega-logo.png" alt="Omega logotyp" class="img-circle img-size-main">
+            <img src="img/omega-logo.png" alt="Omega logotyp" class="img-circle img-size-main">
         </a>
     </div>
 </div>
