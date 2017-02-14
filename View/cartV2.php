@@ -25,7 +25,7 @@ $tomkund;
         <?php
         $summa=0;
         $antalprod=0;
-        if(is_array($product)) {
+        if(isset($product)) {
 
             foreach ($product as $element) {
                 echo '<tr>';
