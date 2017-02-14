@@ -9,14 +9,11 @@ class Controller {
     private $view;
 
 
-
     function __construct() {
         $this->arrayData = array();
         $this ->view = new ViewHelper();
 
     }
-
-
 
 
 
@@ -28,9 +25,6 @@ class Controller {
         $this-> view -> display($dataArray,'homepage'); // Kör funtionen display och laddar vyn med, det sparade datat från getAllWatches och presenterar det i vyn homepage.php
 
     }
-
-
-
 
 
     // Metod för att hämta alla produkter

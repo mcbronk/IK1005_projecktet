@@ -1,13 +1,10 @@
 <?php
 include_once './Model/WatchesTableGateWay.php';
 include_once 'ViewHelper.php';
-/**
- * Created by PhpStorm.
- * User: danie
- * Date: 2017-02-14
- * Time: 08:27
- */
-session_start();
+include_once 'validationWatch.php';
+
+
+
 class admin
 {
 
@@ -15,9 +12,8 @@ class admin
     private $psw;
     private $view;
 
-    /**
-     * admin constructor.
-     */
+
+
     public function __construct()
     {
         $this ->view = new ViewHelper();
@@ -41,7 +37,8 @@ class admin
             $this-> view ->display($dataArray, 'adminvy');
         } else {
 
-            $this->arrayDataForView['postatdata']=$_POST; //Kom vi inte in. Spar vi det som skrivits in i formulären och skriver ut dom i inputboxarna igen.
+            $this->arrayDataForView['postatdata']=$_POST; //Kom vi inte in. Spar vi det som skrivits in i formulären och skriver ut dom i inputboxarna igen
+            var_dump($_POST);
             $this->arrayDataForView['errormessages']=$errormsg; // Spar felmeddelanded och visar dom sedan i vyn.
 
 
@@ -68,7 +65,7 @@ class admin
 
     public function doAdmin() { //För att komma till adminSidan
 
-        if($_SESSION['loggedin'] == TRUE && isset($_SESSION['loggedin'])) { //KOlla om $_SESSION är TRUE
+        if($_SESSION['loggedin'] == TRUE ) { //KOlla om $_SESSION är TRUE
 
             $model = new WatchesTableGateWay();
             $watches = $model->getAllWatches();
@@ -200,7 +197,7 @@ class admin
         $model = new WatchesTableGateWay();
 
         //$model -> addWatch();
-        $product = $model ->getWatchesById();
+        $product = $model ->getAllWatches();
 
         $dataArray = array("watch" => $product);
         $this-> view -> display($dataArray, 'admin');

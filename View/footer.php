@@ -79,7 +79,7 @@
                 <!--body(form)-->
                 <div class="modal-body">
                     <!-- <form role="form"> gav error i w3c validator, Emil sa att den används för Bootstrap -->
-                    <form action="index.php?Admin/doLogin" method="post">
+                    <form action="index.php?Admin/doAdmin" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" name="username" value="" placeholder="Användarnamn">
                     </div>

@@ -3,14 +3,12 @@
 class validationWatch
 {
 
-private $error;
-    /**
-     * validationWatch constructor.
-     */
 
     public function validateWatchForm() // För att validera textfälten.
     {
         $errormsg = array();
+
+
 
 
         foreach ($_POST as $key => $value) {
@@ -106,9 +104,10 @@ private $error;
     } else {
 
         $error = 'Felaktiga uppgifter!';
-        }
 
+        }
         return $error;
+
     }
 
     private function validationBild($bild) {
@@ -125,10 +124,6 @@ private $error;
         }
         return $error;
     }
-
-
-
-
 
 
 }

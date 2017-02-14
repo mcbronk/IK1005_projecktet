@@ -14,7 +14,7 @@ include 'header.php';
         <br>
         <br><br>
         <a href='index.php?Admin/logOut'><button type="button" class="btn btn-success; button pull-right" >Logga ut!</button></a>
-        <a href='index.php?Admin/?addView'><button type="button" class="btn btn-info" >Lägg till ny produkt!</button></a><br>
+        <a href='index.php?Admin/addView'><button type="button" class="btn btn-info" >Lägg till ny produkt!</button></a><br>
         <br>
         <table class="<table col-sm-12 table-bordered table-striped table-condensed cf">
             <thead>
