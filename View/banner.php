@@ -10,17 +10,17 @@
             <!-- wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="../img/rolex-lady-banner.jpg" alt="Rolex Lady-banner">
+                    <img src="img/rolex-lady-banner.jpg" alt="Rolex Lady-banner">
                     <div class="carousel-caption"></div>
                 </div>
 
                 <div class="item">
-                    <img src="../img/rolex-city-banner.jpg" alt="Roley-banner">
+                    <img src="img/rolex-city-banner.jpg" alt="Roley-banner">
                     <div class="carousel-caption"></div>
                 </div>
 
                 <div class="item">
-                    <img src="../img/omega-london-banner.jpg" alt="Omega-banner">
+                    <img src="img/omega-london-banner.jpg" alt="Omega-banner">
                     <div class="carousel-caption"></div>
                 </div>
             </div>

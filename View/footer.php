@@ -4,19 +4,19 @@
     <!-- Klocklogotyper -->
     <div class="col-sm-12 ">
         <a class="link-watchLogo" href="https://www.rolex.com/" tabindex="9" target="_blank">
-            <img src="../img/rolex-logo.png" alt="Rolex logotyp" class="img-circle img-size-main">
+            <img src="./img/rolex-logo.png" alt="Rolex logotyp" class="img-circle img-size-main">
         </a>
 
         <a class="link-watchLogo" href="https://www.breitling.com/en/" tabindex="10" target="_blank">
-            <img src="../img/breitling-logo.png" alt="Breitling logotyp" class="img-circle img-size-main">
+            <img src="./img/breitling-logo.png" alt="Breitling logotyp" class="img-circle img-size-main">
         </a>
 
         <a class="link-watchLogo" href="http://www.hublot.com/en/" tabindex="11" target="_blank">
-            <img src="../img/hublot-logo.png" alt="Hubot logotyp" class="img-circle img-size-main">
+            <img src="./img/hublot-logo.png" alt="Hubot logotyp" class="img-circle img-size-main">
         </a>
 
         <a class="link-watchLogo" href="https://www.omegawatches.com/" tabindex="12" target="_blank">
-            <img src="../img/omega-logo.png" alt="Omega logotyp" class="img-circle img-size-main">
+            <img src="./img/omega-logo.png" alt="Omega logotyp" class="img-circle img-size-main">
         </a>
     </div>
 </div>
@@ -133,16 +133,16 @@
         <div class="container-fluid bg-3 text-center">
             <!-- Div. logotyper col-lg-2 col-md-1 col-sm-4 col-xs-4 -->
             <div class="col-lg-1 col-sm-3 col-xs-3 footer-div-padding-logo">
-                <img src="../img/tryggehandel.png" class="img-responsive footer-img" alt="Tryggehandel">
+                <img src="img/tryggehandel.png" class="img-responsive footer-img" alt="Tryggehandel">
             </div>
             <div class="col-lg-1 col-sm-3 col-xs-3 footer-div-padding-logo">
-                <img src="../img/amex.png" class="img-responsive footer-img" alt="Amex">
+                <img src="img/amex.png" class="img-responsive footer-img" alt="Amex">
             </div>
             <div class="col-lg-1 col-sm-3 col-xs-3 footer-div-padding-logo">
-                <img src="../img/visa.png" class="img-responsive footer-img" alt="Visa">
+                <img src="img/visa.png" class="img-responsive footer-img" alt="Visa">
             </div>
             <div class="col-lg-1 col-sm-3 col-xs-3 footer-div-padding-logo">
-                <img src="../img/klarna.png" class="img-responsive footer-img" alt="Klarna">
+                <img src="img/klarna.png" class="img-responsive footer-img" alt="Klarna">
             </div>
 
             <!-- Copyright -->
