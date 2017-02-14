@@ -1,5 +1,6 @@
 <?php
-
+include_once './Model/WatchesTableGateWay.php';
+include_once 'ViewHelper.php';
 /**
  * Created by PhpStorm.
  * User: danie

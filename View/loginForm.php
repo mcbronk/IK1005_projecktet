@@ -1,3 +1,4 @@
+<?php include_once'head.php'?>
 <?php
 include "header.php";
 ?>

@@ -1,3 +1,4 @@
+<?php include_once'head.php'?>
 <?php
 include 'header.php';
 $tomkund;
@@ -24,7 +25,6 @@ $tomkund;
         <?php
         $summa=0;
         $antalprod=0;
-        session_start();
         if(is_array($product)) {
 
             foreach ($product as $element) {
@@ -56,7 +56,11 @@ $tomkund;
 
         </tbody>
     </table>
-        <?php echo '<p class="text-danger">',$tomkund, '</p>'?>
+        <?php
+        if (isset($tomkund)){
+            echo'<p class="text-danger">',$tomkund, '</p>';
+        }
+        ?>
 
     </div>
     </div>

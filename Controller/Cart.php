@@ -1,42 +1,31 @@
 <?php
-
+include_once './Model/WatchesTableGateWay.php';
+include_once 'ViewHelper.php';
 /**
  * Created by PhpStorm.
  * User: danie
  * Date: 2017-02-14
  * Time: 08:21
  */
-session_start();
+
 class Cart
 {
 
     private $cart;
+    private $view;
 
     /**
      * Cart constructor.
      */
     public function __construct()
     {
+
+
         $this->cart = array();
+        $this -> view = new ViewHelper();
     }
 
 
-//Metod för att visa kundvagnen.
-    public function showCart () { //För att visa kundvagn.
-
-        if ($_SESSION ['cart']) {
-
-            //Plockar ut alla värden ur bilmärken
-
-            $productArray = $_SESSION ['cart']; //hämtar data från $_SESSION
-            $dataArray = array("product" => $productArray);
-
-
-
-
-        }
-        $this-> view -> display($dataArray , 'cartV2');
-    }
 
 
 
@@ -133,4 +122,21 @@ class Cart
             $this->showCart();
         }
     }
+//Metod för att visa kundvagnen.
+public function showCart () { //För att visa kundvagn.
+
+    if ($_SESSION ['cart']) {
+
+        //Plockar ut alla värden ur bilmärken
+
+        $productArray = $_SESSION ['cart']; //hämtar data från $_SESSION
+        $dataArray = array("product" => $productArray);
+
+
+
+
+    }
+   // print_r($dataArray);
+    $this -> view ->display($dataArray, 'cartV2');
+}
 }

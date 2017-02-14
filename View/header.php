@@ -1,22 +1,5 @@
 <!DOCTYPE html>
 <html lang="sv-se" xml:lang="sv-se">
-<head>
-    <title>Exclusive Watches</title>
-    <meta charset="utf-8">
-    <!-- When you visit a website via a mobile browser it will assume that you’re viewing a big desktop, to preddvent this -->
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Exclusive Watches är en auktoriserad återförsäljare av exklusiva klockor.">
-    <meta name="author" content="Emil Lindström,Erik Karlsson,Daniel Gustafsson,Martin Singh Virk">
-
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- För att alla webbläsare skall stödja Media Queries -->
-    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-    <?php session_start(); ?>
-</head>
 <body>
 <div class="container-fluid">
     <!-- Nav-bar -->
@@ -31,7 +14,7 @@
                 <!-- Företagslogotyp -->
 
                 <a class="navbar-brand" href="index.php?Controller/goToFirstPage">
-                    <img src="img/tie.jpeg" tabindex="1" alt="Företagslogotyp" class="img" width="50" height="50"
+                    <img src="View/img/tie.jpeg" tabindex="1" alt="Företagslogotyp" class="img" width="50" height="50"
                          style="margin-top: -14px">
 
                 </a>
@@ -64,7 +47,7 @@
                             <li><a href="index.php?Controller/getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
                             <li><a href="index.php?Controller/showCart" tabindex="6">ACCESOARER</a></li>
                         </ul>
-                        <?php if($_SESSION['loggedin'] == TRUE) {
+                        <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
                             echo '<li class="dropdown">
                         <a href="produkter.html" tabindex="3" class="dropdown-toggle" data-toggle="dropdown"
@@ -85,7 +68,7 @@
         </div>
     </nav>
 
-    <?php include_once('./cart.php') ?>
+
 
 <form action="" method="post">
 

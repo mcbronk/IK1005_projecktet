@@ -5,7 +5,7 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
-
+session_start();
 
 function autoLoad($class_name)
 {
