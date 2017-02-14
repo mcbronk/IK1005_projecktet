@@ -8,7 +8,7 @@ include "header.php";
     <div class="col-lg-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-10 col-xs-offset-1 product-div" style="margin-bottom: 10%">
         <h2 style="text-align: center">Admin</h2><hr><br>
     <!-- <form role="form"> gav error i w3c validator, Emil sa att den används för Bootstrap -->
-    <form action="Controller.php?doLogin" method="post">
+    <form action="index.php?Admin/doLogin" method="post">
         <div class="form-group">
             <div class="form-group has-feedback">
                 <label class="control-label">Användarnamn: </label>

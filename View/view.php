@@ -1,5 +1,5 @@
 
-<?php include_once 'header.php'?>;
+<?php include_once 'header.php' ?>;
 
 
 <main>
@@ -18,8 +18,8 @@
             echo '<h3>', $element['Namn'], '</h3>';
             echo '<strong>Pris: ', $element['Pris'], '</strong>';
             echo '<hr><br>';
-            echo '<a href="Controller.php?addCart/', $element['ID'],'"><button type="button" class="buy-btns">Köp <span class="glyphicon glyphicon-shopping-cart"></span></button></a>';
-            echo '<a href="Controller.php?getWatchesById/', $element['ID'], '"><button type="button" class="info-btns">Information</button></a>
+            echo '<a href="index.php?Cart/addCart/', $element['ID'],'"><button type="button" class="buy-btns">Köp <span class="glyphicon glyphicon-shopping-cart"></span></button></a>';
+            echo '<a href="index.php?Controller/getWatchesById/', $element['ID'], '"><button type="button" class="info-btns">Information</button></a>
                 </div>';
         }
 
@@ -35,7 +35,7 @@
 
 <!-- End Footer -->
 
-<?php include_once "footer.php"?>;
+<?php include_once "footer.php" ?>;
 
 
 

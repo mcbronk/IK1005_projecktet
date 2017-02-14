@@ -1,4 +1,4 @@
-<?php include_once 'header.php'?>
+<?php include_once 'header.php' ?>
 <main>
 <div class="container-fluid product-bg row">
     <?php
@@ -21,7 +21,7 @@
             echo '<p></p><hr>';
             echo '   <h4 class="pull-center"><strong>Pris: </strong>', $element['Pris'], ' SEK</h4>';
             echo '<p>Lager: ',$element['Lager'],'</p>';
-            echo '<a href="Controller.php?addCart/', $element['ID'], '"> <button type="button" class="buy-btns-2">Lägg i kundkorg</button></a>';
+            echo '<a href="index.php?Cart/addCart/', $element['ID'], '"> <button type="button" class="buy-btns-2">Lägg i kundkorg</button></a>';
 
             echo '     </div>
    
@@ -35,4 +35,4 @@
     ?>
 </div>
 </main>
-<?php include_once 'footer.php'?>
+<?php include_once 'footer.php' ?>

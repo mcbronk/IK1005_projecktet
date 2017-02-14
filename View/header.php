@@ -9,7 +9,7 @@
     <meta name="description" content="Exclusive Watches är en auktoriserad återförsäljare av exklusiva klockor.">
     <meta name="author" content="Emil Lindström,Erik Karlsson,Daniel Gustafsson,Martin Singh Virk">
 
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -30,8 +30,8 @@
                 </button>
                 <!-- Företagslogotyp -->
 
-                <a class="navbar-brand" href="Controller.php?goToFirstPage">
-                    <img src="img/tie.jpeg" tabindex="1" alt="Företagslogotyp" class="img" width="50" height="50"
+                <a class="navbar-brand" href="../Controller/Controller.php?goToFirstPage">
+                    <img src="../img/tie.jpeg" tabindex="1" alt="Företagslogotyp" class="img" width="50" height="50"
                          style="margin-top: -14px">
 
                 </a>
@@ -46,7 +46,7 @@
 
 
                     <li>
-                        <form class="navbar-form navbar-left" action='Controller.php?getSearch'  method='post'>
+                        <form class="navbar-form navbar-left" action='../Controller/Controller.php?getSearch' method='post'>
                             <div class="input-group">
                                 <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
                                 <span class="input-group-btn">
@@ -60,9 +60,9 @@
                         <a href="produkter.html" tabindex="3" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="true" aria-expanded="false">PRODUKTER<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Controller.php?getWatchesByCategory/Klockor" tabindex="4">KLOCKOR</a></li>
-                            <li><a href="Controller.php?getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
-                            <li><a href="cartController.php?showCart" tabindex="6">ACCESOARER</a></li>
+                            <li><a href="index.php?Controller/getWatchesByCategory/Klockor" tabindex="4">KLOCKOR</a></li>
+                            <li><a href="index.php?Controller/getWatchesByCategory/Armband" tabindex="5">TILLBEHÖR</a></li>
+                            <li><a href="index.php?Controller/showCart" tabindex="6">ACCESOARER</a></li>
                         </ul>
                         <?php if($_SESSION['loggedin'] == TRUE) {
 
@@ -70,14 +70,14 @@
                         <a href="produkter.html" tabindex="3" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Controller.php?doAdmin" tabindex="7">CRUD</a></li>
-                            <li><a href="Controller.php?logOut" tabindex="8">Logga ut</a></li>
+                            <li><a href="index.php?Admin/doAdmin" tabindex="7">CRUD</a></li>
+                            <li><a href="index.php?Admin/logOut" tabindex="8">Logga ut</a></li>
                             
                         </ul>';
 
                         } ?>
                     <li><a href="#" tabindex="7">KONTAKT</a></li>
-                    <li><a href="cartController.php?showCart"  tabindex="9" ><span
+                    <li><a href="index.php?Cart/showCart" tabindex="9" ><span
                                 class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php echo $_SESSION['antalprodukter']; ?></span></a>
                     </li>
                 </ul>
@@ -85,7 +85,7 @@
         </div>
     </nav>
 
-    <?php include_once ('./cart.php')?>
+    <?php include_once('./cart.php') ?>
 
 <form action="" method="post">
 

@@ -33,9 +33,9 @@ $tomkund;
                 echo '<td style="vertical-align:middle;">',$element[0]['Namn'],'</td>';
                 echo '<td style="vertical-align:middle;">',$element[0]['Pris'],'</td>';
                 echo '<td style="vertical-align:middle;">',$element[1],'</td>';
-                echo '<td style="vertical-align:middle;"><a href=Controller.php?increaseCart/',$element[0]['ID'],'><span class="glyphicon glyphicon-plus"></span></a></td>';
-                echo '<td style="vertical-align:middle;"><a href=Controller.php?decreaseCart/',$element[0]['ID'],'><span class="glyphicon glyphicon-minus"></span></a></td>';
-                echo '<td style="vertical-align:middle;"><a href=Controller.php?removeFromCart/',$element[0]['ID'],'><span class="glyphicon glyphicon-trash"></span></a></td>';
+                echo '<td style="vertical-align:middle;"><a href=index.php?Cart/increaseCart/',$element[0]['ID'],'><span class="glyphicon glyphicon-plus"></span></a></td>';
+                echo '<td style="vertical-align:middle;"><a href=index.php?Cart/decreaseCart/',$element[0]['ID'],'><span class="glyphicon glyphicon-minus"></span></a></td>';
+                echo '<td style="vertical-align:middle;"><a href=index.php?Cart/removeFromCart/',$element[0]['ID'],'><span class="glyphicon glyphicon-trash"></span></a></td>';
                 $summa+=$element[0]['Pris']*$element[1];
                 $antalprod+=$element[1];
 
@@ -44,7 +44,7 @@ $tomkund;
 
             }
             echo "<tr><td colspan='8' align='right'><strong>Att betala: {$summa} kr</strong></td></tr>";
-            echo '<td><button type="button" class="btn btn-info"><a href=Controller.php?endSession/>Köp!</a></button></td>';
+            echo '<td><button type="button" class="btn btn-info"><a href=index.php?Cart/endSession/>Köp!</a></button></td>';
             $_SESSION['antalprodukter'] = $antalprod;
         } else {
             $tomkund= "Varukorgen är tom!";
