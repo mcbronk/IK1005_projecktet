@@ -29,7 +29,7 @@
 
 
                     <li>
-                        <form class="navbar-form navbar-left" action='../Controller/Controller.php?getSearch' method='post'>
+                        <form class="navbar-form navbar-left" action='index.php?Controller/getSearch' method='post'>
                             <div class="input-group">
                                 <input type="text" class="form-control bannersearch" name="searchField" tabindex="2" placeholder="Sök..." >
                                 <span class="input-group-btn">

@@ -68,7 +68,7 @@ class admin
 
     public function doAdmin() { //För att komma till adminSidan
 
-        if($_SESSION['loggedin'] == TRUE) { //KOlla om $_SESSION är TRUE
+        if($_SESSION['loggedin'] == TRUE && isset($_SESSION['loggedin'])) { //KOlla om $_SESSION är TRUE
 
             $model = new WatchesTableGateWay();
             $watches = $model->getAllWatches();
