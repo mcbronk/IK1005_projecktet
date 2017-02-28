@@ -5,6 +5,7 @@ class WatchesTableGateWay
 {
     //put your code here
 
+
     public function getAllWatches() //Funktionen getAllWatches. Alla metoder är snarlika går inte igenom alla.
     {
         $pdo = DBConnection::connect(); //Spar resultatet från DBConnections statiska metod connect() till $pdo.
@@ -15,7 +16,9 @@ class WatchesTableGateWay
         $statement->execute(); //Exekverar frågan till databasen. med metoden execute();
 
         $watches = $statement->fetchAll(PDO::FETCH_ASSOC); //Hämtar in resultatet med functionen fetchALL, spar det sedan till variabeln watches.
+
         $pdo = null; //nolställer $pdo
+
         return $watches; //Skickar tillbaka $watches.
     }
 
@@ -76,7 +79,7 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
             return null;
 }
     }
-
+// får ut post härifrån och skapa procedurer.
     public function addWatch() {
         try {
             $pdo = DBConnection::connect();

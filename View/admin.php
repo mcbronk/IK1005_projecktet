@@ -5,69 +5,7 @@
 
 <main>
 
-   <?php /*
-    <div class="container-fluid product-bg row">
-
-
-
-
-        <form name="name" action="Controller.php?addWatch" method="post">
-            <br>
-            <br>
-
-            <fieldset style="width:400px;">
-
-
-                <legend style="color:#A1AB20;font-weight:bold;">Produktuppgift</legend>
-                <br>
-                <br>
-                <label>Id: <span style="color: red"><?=$errormessages['id']?></span></label>
-                <br>
-                <input type="text" name="id" value="<?=$postatdata['id']?>">*
-                <br>
-                <label>Namn: <span style="color: red"><?=$errormessages['namn']?></span></label>
-                <br>
-                <input type="text" name="namn" value="<?=$postatdata['namn']?>">*
-                <br>
-                <label>Märke: <span style="color: red"><?=$errormessages['marke']?></span></label>
-                <br>
-                <input type="text" name="marke" value="<?=$postatdata['marke']?>">*
-                <br>
-                <label>Kategori: <span style="color: red"><?=$errormessages['kategori']?></span></label>
-                <br>
-                <input type="text" name="kategori" value="<?=$postatdata['kategori']?>">*
-                <br>
-                <label>Beskrivning: <span style="color: red"><?=$errormessages['beskrivning']?></span></label>
-                <br>
-                <input type="text" name="beskrivning" value="<?=$postatdata['beskrivning']?>">*
-                <br>
-                <label>Pris: <span style="color: red"><?=$errormessages['pris']?></span></label>
-                <br>
-                <input type="text" name="pris" value="<?=$postatdata['pris']?>">*
-                <br>
-                <label>Lager: <span style="color: red"><?=$errormessages['lager']?></span></label>
-                <br>
-                <input type="text" name="lager" value="<?=$postatdata['lager']?>">*
-                <br>
-                <label>Bildurl: <span style="color: red"><?=$errormessages['bildurl']?></span></label>
-                <br>
-                <input type="text" name="bildurl" value="<?=$postatdata['bildurl']?>">*
-                <br>
-
-                <br>
-
-                <input type="submit" value="Skicka">
-
-
-
-
-
-
-
-            </fieldset>
-        </form></div>
-
-    */?><div class="container" style=" padding-top: 5%; ">
+   <?php ?><div class="container" style=" padding-top: 5%; ">
         <H2>Lägg till produkt!</H2><hr>
 
     <form name="name" action="index.php?Admin/addWatch" method="post">
