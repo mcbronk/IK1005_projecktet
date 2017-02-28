@@ -1,31 +1,38 @@
 <?php
 
-include_once('Model/WatchesTableGateWay.php');
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
 
 
-$queryArr = explode('/', urldecode($_SERVER['PATH_INFO']));
+include_once './Model/WatchesTableGateWay.php';
+$model = new WatchesTableGateWay();
 
 
-if (function_exists($queryArr[1])){
+//$queryArr = explode('/', urldecode($_SERVER['PATH_INFO']));
 
-    switch ($queryArr[1]){
 
-        case 'getAllWatchets':
-            echo json_encode(getProdukt($queryArr[2]));
-            break;
+
+$queryArray=explode("/",$_SERVER['QUERY_STRING']);
+
+
+
+
+
+if (method_exists($model,$queryArray[0])){
+
+    switch ($queryArray[0]){
+
+
         case 'getAllWatches':
-            echo json_encode(getAllWatches());
-            break;
-        case 'getNews':
-            echo json_encode(getNews());
-            break;
-        case 'getProduktByBrand':
-            echo json_encode(getProduktByBrand($queryArr[2],$queryArr[3]));
+            echo json_encode($model ->getAllWatches());
             break;
 
+        case 'getWatchesById':
+            echo json_encode($model ->getWatchesById($queryArray[1]));
         default:
 
-            echo json_encode(getAllProdukt());
+            echo json_encode(getAllWatches());
     }
 }
 
