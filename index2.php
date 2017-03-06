@@ -15,10 +15,6 @@ $model = new WatchesTableGateWay();
 
 $queryArray=explode("/",$_SERVER['QUERY_STRING']);
 
-
-
-
-
 if (method_exists($model,$queryArray[0])){
 
     switch ($queryArray[0]){
