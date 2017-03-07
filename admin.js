@@ -16,12 +16,11 @@ $(document).ready(function() {
       var psw = 'admin';
 
       if(user == $("#user").val() && psw == $("#pass").val()) {
-          alert('G');
           getAll();
 
         } else {
 
-          alert('ig');
+          alert('Felaktiga uppgifter!');
       }
 
 
@@ -31,39 +30,56 @@ $(document).ready(function() {
 
 });
 
+
+//Funktion getAll() hämtar alla klockor från databasen genom att anropa index2.php?getAllWatches, får som svar en json_encode som vi sedan slänger
+// med till funktionen createTable för att bygga en tabell med alla klockor från databasen.
 function getAll() {
     $.getJSON("index2.php?getAllWatches/").done(function (json) {
 
-
         createTable(json);
-
-
     });
 }
 
 $(document).on('click', '.admindoit',this, function () {
-    alert('test');
     addDialog();
-
-
 });
 
+
 $(document).on('click', '.uppdatera',this, function () {
+    var data = $(this).attr('data');
+    updateDialog(data);
+});
 
-    var test = $(this).attr('data');
-    alert(test);
-    updateDialog(test);
+$(document).on('click', '.plockaBort',this, function () {
 
+    var id = $(this).attr('data');
+    alert(id);
+    deleteWatch(id);
 
 });
 
 function addProdukt() {
+    alert($("#addForm").serialize());
     $.post("index2.php?addWatch", $("#addForm").serialize())
         .done(function () {
             getAll();
 
         });
 }
+
+function updateWatch() {
+    $.post("index2.php?updateWatch", $("#updateForm").serialize())
+        .done(function () {
+
+            getAll();
+
+        });
+}
+
+function deleteWatch(id) {
+
+
+
 
 
 function addDialog() {
@@ -87,7 +103,7 @@ function addDialog() {
         width: 500,
         modal: true,
         buttons: {
-            "Lägg till produkt!": function () {
+            "Lägg till produtk!": function () {
                 addProdukt();
                 $('#addForm').trigger('reset');
                 $(this).dialog("close");
@@ -118,9 +134,9 @@ function updateDialog(id) {
         '<p>Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
         '<p>Kategori</p><input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
         '<p>Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
-        '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'
-    '<p>Lager</p><input type="text" id="inputLager" id="inputLager" name="lager" class="form-control"><br>'+
-    '<p>Bildurl</p><input type="text" id="inputPris" id="inputBildurl" name="bildurl"  class="form-control"><br>'+
+        '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
+    '<p>Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
+    '<p>Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
     '</form>';
 
     $('#dialog').dialog().empty();
@@ -131,8 +147,8 @@ function updateDialog(id) {
         width: 500,
         modal: true,
         buttons: {
-            "Lägg till produkt!": function () {
-                addProdukt();
+            "Uppdatera produkt!": function () {
+                updateWatch();
                 $('#updateForm').trigger('reset');
                 $(this).dialog("close");
 

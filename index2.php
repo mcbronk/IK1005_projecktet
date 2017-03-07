@@ -24,8 +24,6 @@ if (method_exists($model,$queryArray[0])){
                 $id = filter_var(trim($_POST['id']));
                 $name = filter_var(trim($_POST['namn']));
                 $brand = filter_var(trim($_POST['marke']));
-
-
                 $category = filter_var(trim($_POST['kategori']));
                 $price = filter_var(trim($_POST['pris']));
                 $desc = filter_var(trim($_POST['beskrivning']));
