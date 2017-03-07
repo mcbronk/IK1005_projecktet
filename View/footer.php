@@ -62,7 +62,7 @@
 
     <div class="col-md-3 article-main">
         <dl>
-            <dt class="h3text">Webmaster</dt>
+            <dt class="h3text">Webmasters</dt>
             <dd><a href="index1.html" tabindex="14"
                    title="Admins"><span class="glyphicon glyphicon-cog"></span></a></dd>
         </dl>

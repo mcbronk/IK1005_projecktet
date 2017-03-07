@@ -22,11 +22,7 @@ $(document).ready(function() {
 
           alert('Felaktiga uppgifter!');
       }
-
-
     });
-
-
 
 });
 
@@ -44,6 +40,15 @@ $(document).on('click', '.admindoit',this, function () {
     addDialog();
 });
 
+$(document).on('click', '.homeBtn',this, function () {
+
+    window.location.href='index.php';
+
+});
+
+
+
+
 
 $(document).on('click', '.uppdatera',this, function () {
     var data = $(this).attr('data');
@@ -59,7 +64,7 @@ $(document).on('click', '.uppdatera',this, function () {
 });*/
 
 function addProdukt() {
-    //alert($("#addForm").serialize());
+
     $.post("index2.php?addWatch", $("#addForm").serialize())
         .done(function () {
             getAll();
@@ -78,7 +83,7 @@ function updateWatch() {
 
 function deleteWatch(id, name) {
 
-    var answer = confirm("Vill du ta bort den här klockan ?" + name);
+    var answer = confirm("Vill du ta bort den här klockan " + name +" ?");
 
     if(answer){
         $.post("index2.php?deleteWatch/" + id);
@@ -291,7 +296,7 @@ function createTable(data) {
         cell6.innerHTML = "<button data='"+obj.ID+"'class='btn btn-info uppdatera'  title='Ta bort' >Uppdatera</button>";
 
         var cell7 = row.insertCell(-1);
-        cell7.innerHTML = "<button onclick='deleteWatch(\""+obj.ID +"\",\""+ obj.name+"\")' class='btn btn-danger plockaBort'  title='Ta bort' >Ta bort</button>"
+        cell7.innerHTML = "<button onclick='deleteWatch(\""+obj.ID +"\",\""+ obj.Namn+"\")' class='btn btn-danger plockaBort'  title='Ta bort' >Ta bort</button>"
 
         cell2.setAttribute('class','hidden-xs sort');
         cell3.setAttribute('class','hidden-xs sort');
@@ -320,7 +325,12 @@ function createTable(data) {
     var addBtn = $("<Button>").text('Lägg till produkt!');
     addBtn.attr('class','btn btn-success admindoit');
 
+    var homeBtn = $("<Button>").text('Hem!');
+    homeBtn.attr('class','btn btn-success homeBtn');
+
+
     maindiv1.append(addBtn);
+    maindiv1.append(homeBtn);
 
 
 
