@@ -84,20 +84,20 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
         try {
             $pdo = DBConnection::connect();
 
-            $sqlQuery = ("CALL h15ExclusiveWatches_addWatch (?,?,?,?,?,?,?,?))");
+            $sqlQuery = ("CALL h15ExclusiveWatches_addWatch (?,?,?,?,?,?,?,?)");
 
             //lägger till en bil använder namngivna platshållare tex (:regnummer)
             $statement = $pdo->prepare($sqlQuery);
             //binder de namngivna platshållaren till det postade data i $_POST[];
             //saniterar det postade från tex html taggar
-            $statement->bindParam(':ID', $ID, PDO::PARAM_INT);
-            $statement->bindParam(':Namn', $namn, PDO::PARAM_STR);
-            $statement->bindParam(':Marke', $marke, PDO::PARAM_STR);
-            $statement->bindParam(':Kategori', $kategori, PDO::PARAM_STR);
-            $statement->bindParam(':Beskrivning',$beskrivning, PDO::PARAM_STR);
-            $statement->bindParam(':Pris', $pris);
-            $statement->bindParam(':Lager', $lager, PDO::PARAM_INT);
-            $statement->bindParam(':Bildurl', $bild, PDO::PARAM_STR);
+            $statement->bindParam(1, $ID, PDO::PARAM_INT);
+            $statement->bindParam(2, $namn, PDO::PARAM_STR);
+            $statement->bindParam(3, $marke, PDO::PARAM_STR);
+            $statement->bindParam(4, $kategori, PDO::PARAM_STR);
+            $statement->bindParam(5, $beskrivning, PDO::PARAM_STR);
+            $statement->bindParam(6, $pris);
+            $statement->bindParam(7, $lager, PDO::PARAM_INT);
+            $statement->bindParam(8, $bild, PDO::PARAM_STR);
             //exekverar frågan
             $statement->execute();
             $pdo = NULL;
@@ -116,21 +116,21 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
            // $statement = $pdo->prepare('UPDATE h15_exlusivewatches SET id=:ID, '
              //   . 'namn=:Namn, marke=:Marke, kategori=:Kategori, beskrivning=:Beskrivning, pris = :Pris, lager = :Lager, bildurl = :Bildurl WHERE id=:ID');
             //binder de namngivna platshållaren till det postade data i $_POST[];
-            $sqlQuery = ("");
+            $sqlQuery = ("h15exlusivewatches_updateWatch (?,?,?,?,?,?,?,?)");
 
 
             $statement = $pdo -> prepare($sqlQuery);
 
 
             //saniterar det postade från tex html taggar
-            $statement->bindParam(':ID', $ID, PDO::PARAM_INT);
-            $statement->bindParam(':Namn', $namn, PDO::PARAM_STR);
-            $statement->bindParam(':Marke', $marke, PDO::PARAM_STR);
-            $statement->bindParam(':Kategori', $kategori, PDO::PARAM_STR);
-            $statement->bindParam(':Beskrivning',$beskrivning, PDO::PARAM_STR);
-            $statement->bindParam(':Pris', $pris);
-            $statement->bindParam(':Lager', $lager, PDO::PARAM_INT);
-            $statement->bindParam(':Bildurl', $bild, PDO::PARAM_STR);
+            $statement->bindParam(1, $ID, PDO::PARAM_INT);
+            $statement->bindParam(2, $namn, PDO::PARAM_STR);
+            $statement->bindParam(3, $marke, PDO::PARAM_STR);
+            $statement->bindParam(4, $kategori, PDO::PARAM_STR);
+            $statement->bindParam(5,$beskrivning, PDO::PARAM_STR);
+            $statement->bindParam(6, $pris);
+            $statement->bindParam(7, $lager, PDO::PARAM_INT);
+            $statement->bindParam(8, $bild, PDO::PARAM_STR);
             //exekverar frågan
             $statement->execute();
 

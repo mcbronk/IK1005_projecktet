@@ -16,20 +16,34 @@ $model = new WatchesTableGateWay();
 $queryArray=explode("/",$_SERVER['QUERY_STRING']);
 
 if (method_exists($model,$queryArray[0])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        switch ($queryArray[0]){
+            case 'addWatch':
 
-    switch ($queryArray[0]){
+                break;
 
+            case 'updateWatch':
 
-        case 'getAllWatches':
-            echo json_encode($model ->getAllWatches());
-            break;
-
-        case 'getWatchesById':
-            echo json_encode($model ->getWatchesById($queryArray[1]));
-        default:
-
-            echo json_encode(getAllWatches());
+        }
     }
+    else {
+
+        switch ($queryArray[0]){
+
+
+            case 'getAllWatches':
+                echo json_encode($model ->getAllWatches());
+                break;
+
+            case 'getWatchesById':
+                echo json_encode($model ->getWatchesById($queryArray[1]));
+            default:
+
+                echo json_encode(getAllWatches());
+        }
+    }
+
 }
 
 ?>
