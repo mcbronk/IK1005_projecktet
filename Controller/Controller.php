@@ -34,6 +34,7 @@ class Controller {
         $dataArray=array('watch'=>$watches);
 
         $this-> view -> display($dataArray,'view');
+
     }
 
 

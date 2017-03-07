@@ -12,7 +12,7 @@ class DBConnection implements IConnectDatabase{ //Klassen DBConnection implement
         try {
 
             if(self::$pdo==null) { //är pdo NULL går vi vidare och skapar ett PDO objekt men det data vi sparat i $serverm $user, $password.
-                self::$pdo=new PDO(self::$server, self::$user, self::$password);
+                self::$pdo=new PDO(self::$server, self::$user, self::$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
                 return self::$pdo; //Skickar tillbaka pdo
             }
             else {
