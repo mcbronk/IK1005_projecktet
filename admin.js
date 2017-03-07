@@ -42,12 +42,12 @@ $(document).on('click', '.admindoit',this, function () {
     addDialog();
 });
 
-/*$(document).on('click', '.homeBtn',this, function () {
+$(document).on('click', '.homeBtn',this, function () {
 
     window.location.href='index.php';
 
 });
-*/
+
 
 
 
@@ -65,15 +65,23 @@ $(document).on('click', '.uppdatera',this, function () {
 
 });*/
 
+//En funktion som lägger till en produkt
 function addProdukt() {
 
+    //Kallar på funktionen i index2.php som i sin tur kallar på modellen
+    /*
+    Serialize slår ihop alla input element i en form till en array,
+    genom denna arrayen kommer vi åt värden sen som skickas till DB.
+     */
     $.post("index2.php?addWatch/    ", $("#addForm").serialize())
         .done(function () {
+            //En egen funktion som heter getAll som populerar tabellen
             getAll();
 
         });
 }
 
+//Samma som ovan fast kallar på update
 function updateWatch() {
     $.post("index2.php?updateWatch/", $("#updateForm").serialize())
         .done(function () {
@@ -85,65 +93,81 @@ function updateWatch() {
 
 function deleteWatch(id, name) {
 
+    //En variabel som sparar true eller false beroende på hur de klickar i rutan
     var answer = confirm("Vill du ta bort den här klockan " + name +" ?");
 
+    //If (answer == true) är samma sak som if(answer)
     if(answer){
+        //Tar bort klockan
         $.post("index2.php?deleteWatch/" + id);
         getAll();
     }
     else{
+        //annars tar inte bort klockan
         alert("Klockan är inte borttagen.");
     }
 }
 
 
 function addDialog() {
-
+    //Variabel med hela formen i sig.
     var text1 ='<form id="addForm">'+
         '<p id="idP">ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
         '<p id="namnP">Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
         '<p id="markeP">Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
         '<p id="kategoriP">Kategori</p> <input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
-        '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
         '<p id="beskrivningP">Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
         '<p id="lagerP">Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
+        '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
         '<p id="bildP">Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
         '</form>';
 
+    //Tömmer #dialog som ligger i html
     $('#dialog').dialog().empty();
 
+    //Skapar upp en modal av en dialog i HTML
+    //Lite värden för dialogen här under
     $('#dialog').dialog({
         autoOpen: true,
         height: 600,
         width: 500,
         modal: true,
         buttons: {
+            //Knappar, lägg till produkt
             "Lägg till produkt!": function () {
-           //     if(validate()){
+               if(validate()){
                     addProdukt();
                     $('#addForm').trigger('reset');
                     $(this).dialog("close");
-         //       }
+                }
 
 
             },
+            //Cancel funktionaliteten, ska reseta modalen och stänga rutan
             "Cancel": function () {
 
                 $('#addForm').trigger('reset');
                 $("#dialog").dialog("close");
             }
         },
+        //Stäng funkationitet som resetar.
         close: function () {
 
             $('#addForm').trigger('reset');
         }
     });
+    /*
+    Lägger till text1 variabeln som innehåller formen på #dialog diven som ligger i html
+    På svenska så fyller den ut modalen som är en div med input och P element.
+     */
     $("#dialog").append(text1);
 
 
 }
 
+//Samma princip som för add dialogen, barao lika namn
 function updateDialog(id) {
+    //Fyller upp alla inputs i modalen med värden från getWatchesByID och funktionen fylldialog
     $.getJSON("index2.php?getWatchesById/" + id).done(fyllDialog);
 
     var text1 ='<form id="updateForm">'+
@@ -151,9 +175,9 @@ function updateDialog(id) {
         '<p id="namnP">Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
         '<p id="markeP">Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
         '<p id="kategoriP">Kategori</p> <input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
-        '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
         '<p id="beskrivningP">Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
-    '<p id="lagerP">Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
+        '<p id="lagerP">Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
+        '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
     '<p id="bildP">Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
     '</form>';
 
@@ -166,11 +190,11 @@ function updateDialog(id) {
         modal: true,
         buttons: {
             "Uppdatera produkt!": function () {
-            //    if(validate()){
+                if(validate()){
                     updateWatch();
                     $('#updateForm').trigger('reset');
                     $(this).dialog("close");
-              //  }
+                }
 
 
             },
@@ -192,14 +216,19 @@ function updateDialog(id) {
 
 
 //Inspirerad från Hans exempelkod för att fylla textfälten.
+/*
+Varje input får ett värde från json array på index plats 0
+Det finns bara 1 värde i json arrayen vid det tillfället i och med att den anropar getWatchesByID
+Den fyller ut de olika fälten med värden som har hämtas från databasen för den specifika klockan.
+ */
 function fyllDialog(json) {
     $('#inputID').attr('value', json[0].ID);
     $('#inputNamn').attr('value', json[0].Namn);
     $('#inputMarke').attr('value', json[0].Marke);
     $('#inputKategori').attr('value', json[0].Kategori);
     $('#inputBeskrivning').attr('value', json[0].Beskrivning);
-    $('#inputPris').attr('value', json[0].Pris);
     $('#inputLager').attr('value', json[0].Lager);
+    $('#inputPris').attr('value', json[0].Pris);
     $('#inputBildurl').attr('value', json[0].Bildurl);
 
 }
@@ -208,25 +237,35 @@ function fyllDialog(json) {
 //Inspirerad från Hans exempelkod för att bygga en tabell.
 function createTable(data) {
 
+    //Tömmer main div
     $("#main").empty();
 
+    //tömmer panelheading
     $(".panel-heading").empty();
 
 
+    //Skapar tabellen
     var tbl = document.createElement('table');
+    //Ger table css
     tbl.setAttribute('class', 'table table-hover');
+
+    //skapar table header
     var th = document.createElement('thead');
+    //Skapar tablebody
     var tbody = document.createElement('tbody');
+    //Skapar en tablerow
     var tr = document.createElement('tr');
 
 
-
+    //Skapar tablehead
     var th1 = document.createElement('th');
 
+    //Skapar en text som läggs på table head
     var txt1 = document.createTextNode('Produkt');
 
     var th2 = document.createElement('th');
     var txt2 = document.createTextNode('Namn');
+    //Lite css
     th2.setAttribute('class','hidden-xs sort');
 
     var th3 = document.createElement('th');
@@ -249,7 +288,9 @@ function createTable(data) {
 
 
 
+    //Tablehead 1 appendar värdet i txt1 som är Produkt
     th1.appendChild(txt1);
+    //tablehead 1 läggs på table row
     tr.appendChild(th1);
 
     th2.appendChild(txt2);
@@ -275,43 +316,51 @@ function createTable(data) {
 
     tbl.appendChild(th);
 
+    //För varje data funktion key(index) objekt(value)
     $.each(data,function(key,obj){
 
+        //Variabel row, sätter in i tabellen på -1 för den ska hamna längst bak
         var row = tbl.insertRow(-1);
 
-
+        //Slänger ihop ID med en bild på första raden
         row.insertCell(-1).innerHTML = "<p>ID<strong> "+obj.ID+"</strong></p><hr><img src='" + obj.Bildurl + "'style='max-width:62px;max-height:82px; width: auto; height: auto; '>";
 
+        //Namn på andra kolumnen
         var cell2 = row.insertCell(-1);
-
         cell2.innerHTML = data[key].Namn;
 
+        //Kategori på kolumnen 3
         var cell3 = row.insertCell(-1);
-
         cell3.innerHTML = obj.Kategori;
+
         var cell4 = row.insertCell(-1);
         cell4.innerHTML = obj.Pris;
 
         var cell5 = row.insertCell(-1);
         cell5.innerHTML = obj.Beskrivning;
 
-
+        //Slänger in en knapp med och klass för uppdatera
         var cell6 = row.insertCell(-1);
-        cell6.innerHTML = "<button data='"+obj.ID+"'class='btn btn-info uppdatera'  title='Ta bort' >Uppdatera</button>";
+        cell6.innerHTML = "<button data='"+obj.ID+"'class='btn btn-info uppdatera'  title='Uppdatera' >Uppdatera</button>";
 
+        //Skapar upp en knapp med ta bort och en onClick händelse som tar emot 2 parametrar
+        //Backslash gör att parametarna blir seperade
         var cell7 = row.insertCell(-1);
         cell7.innerHTML = "<button onclick='deleteWatch(\""+obj.ID +"\",\""+ obj.Namn+"\")' class='btn btn-danger plockaBort'  title='Ta bort' >Ta bort</button>"
 
+        //Mediaquiers om skärmen blir mindre
         cell2.setAttribute('class','hidden-xs sort');
         cell3.setAttribute('class','hidden-xs sort');
         cell4.setAttribute('class','hidden-xs sort');
         cell5.setAttribute('class','hidden-xs sort');
 
+        //Lägger in raden i table bodyn
         tbody.appendChild(row);
 
 
     });
 
+    //Tabellen lägger på tablebodyn
     tbl.appendChild(tbody);
 
 
@@ -333,20 +382,23 @@ function createTable(data) {
     homeBtn.attr('class','btn btn-success homeBtn');
 
 
+    //Kastar på alla divar i mainet, med knapparna.
     maindiv1.append(addBtn);
     maindiv1.append(homeBtn);
 
     maindiv1.append(maindiv2);
     mainet.append(maindiv1);
 
+    //Lägger på "mainet" på main diven i HTML
     $("#main").append(mainet);
+    //Lägger på table i pandelheading
     $('.panel-heading').append(tbl);
 
 
 }
 
 
-/*
+
 function validate() {
     var error = 0; // Error variabel med värdet 0
 
@@ -467,4 +519,4 @@ function validate() {
         return false;
     }
     }
-*/
+
