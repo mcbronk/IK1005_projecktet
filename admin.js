@@ -41,6 +41,132 @@ function getAll() {
     });
 }
 
+$(document).on('click', '.admindoit',this, function () {
+    alert('test');
+    addDialog();
+
+
+});
+
+$(document).on('click', '.uppdatera',this, function () {
+
+    var test = $(this).attr('data');
+    alert(test);
+    updateDialog(test);
+
+
+});
+
+function addProdukt() {
+    $.post("index2.php?addWatch", $("#addForm").serialize())
+        .done(function () {
+            getAll();
+
+        });
+}
+
+
+function addDialog() {
+
+    var text1 ='<form id="addForm">'+
+        '<p>ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
+        '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
+        '<p>Märke</p> <input type="text" id="inputNamn" name="marke"  class="form-control"><br>'+
+        '<p>Kategori</p><input type="text" id="inputMarke" name="kategori"  class="form-control"><br>'+
+        '<p>Pris</p><input type="text" id="inputKategori" name="pris" class="form-control"><br>'+
+        '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
+        '<p>Lager</p><input type="text" id="inputLager" name="lager" class="form-control"><br>'+
+        '<p>Bildurl</p><input type="text" id="inputPris" name="bildurl"  class="form-control"><br>'+
+        '</form>';
+
+    $('#dialog').dialog().empty();
+
+    $('#dialog').dialog({
+        autoOpen: true,
+        height: 600,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Lägg till produkt!": function () {
+                addProdukt();
+                $('#addForm').trigger('reset');
+                $(this).dialog("close");
+
+            },
+            "Cancel": function () {
+
+                $('#addForm').trigger('reset');
+                $("#dialog").dialog("close");
+            }
+        },
+        close: function () {
+
+            $('#addForm').trigger('reset');
+        }
+    });
+    $("#dialog").append(text1);
+
+
+}
+
+function updateDialog(id) {
+    $.getJSON("index2.php?getWatchesById/" + id).done(fyllDialog);
+
+    var text1 ='<form id="updateForm">'+
+        '<p>ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
+        '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
+        '<p>Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
+        '<p>Kategori</p><input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
+        '<p>Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
+        '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'
+    '<p>Lager</p><input type="text" id="inputLager" id="inputLager" name="lager" class="form-control"><br>'+
+    '<p>Bildurl</p><input type="text" id="inputPris" id="inputBildurl" name="bildurl"  class="form-control"><br>'+
+    '</form>';
+
+    $('#dialog').dialog().empty();
+
+    $('#dialog').dialog({
+        autoOpen: true,
+        height: 600,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Lägg till produkt!": function () {
+                addProdukt();
+                $('#updateForm').trigger('reset');
+                $(this).dialog("close");
+
+            },
+            "Cancel": function () {
+
+                $('#updateForm').trigger('reset');
+                $("#dialog").dialog("close");
+            }
+        },
+        close: function () {
+
+            $('#updateForm').trigger('reset');
+        }
+    });
+    $("#dialog").append(text1);
+
+
+}
+
+function fyllDialog(json) {
+    $('#inputID').attr('value', json[0].ID);
+    $('#inputNamn').attr('value', json[0].Namn);
+    $('#inputMarke').attr('value', json[0].Marke);
+    $('#inputKategori').attr('value', json[0].Kategori);
+    $('#inputBeskrivning').attr('value', json[0].Beskrivning);
+    $('#inputPris').attr('value', json[0].Pris);
+    $('#inputLager').attr('value', json[0].Lager);
+    $('#inputBildurl').attr('value', json[0].Bildurl);
+
+}
+
+
+
 function createTable(data) {
 
     $("#main").empty();

@@ -63,7 +63,7 @@
     <div class="col-md-3 article-main">
         <dl>
             <dt class="h3text">Webmaster</dt>
-            <dd><a href="index.php?Admin/doAdmin" tabindex="14"
+            <dd><a href="index1.html" tabindex="14"
                    title="Admins"><span class="glyphicon glyphicon-cog"></span></a></dd>
         </dl>
     </div>

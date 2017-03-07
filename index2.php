@@ -23,6 +23,8 @@ if (method_exists($model,$queryArray[0])){
 
                 break;
 
+                break;
+
             case 'updateWatch':
 
         }
@@ -38,9 +40,12 @@ if (method_exists($model,$queryArray[0])){
 
             case 'getWatchesById':
                 echo json_encode($model ->getWatchesById($queryArray[1]));
-            default:
+                break;
 
+
+            default:
                 echo json_encode(getAllWatches());
+                break;
         }
     }
 
