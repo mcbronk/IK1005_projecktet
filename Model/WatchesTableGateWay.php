@@ -80,7 +80,7 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
 }
     }
 // får ut post härifrån och skapa procedurer.
-    public function addWatch($ID,$namn,$marke,$kategori,$beskrivning,$pris,$lager,$bild) {
+    public function addWatch($ID,$namn,$marke,$kategori,$beskrivning,$lager,$pris,$bild) {
         try {
             $pdo = DBConnection::connect();
 
@@ -94,11 +94,10 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
             $statement->bindParam(2, $namn, PDO::PARAM_STR);
             $statement->bindParam(3, $marke, PDO::PARAM_STR);
             $statement->bindParam(4, $kategori, PDO::PARAM_STR);
-            $statement->bindParam(5, $beskrivning, PDO::PARAM_STR);
-            $statement->bindParam(6, $pris);
-            $statement->bindParam(7, $lager, PDO::PARAM_INT);
+            $statement->bindParam(5,$beskrivning, PDO::PARAM_STR);
+            $statement->bindParam(6, $lager,PDO::PARAM_INT);
+            $statement->bindParam(7, $pris, PDO::PARAM_STR);
             $statement->bindParam(8, $bild, PDO::PARAM_STR);
-            //exekverar frågan
             $statement->execute();
             $pdo = NULL;
         } catch (PDOException $pdoexp) {
@@ -107,7 +106,7 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
         }
     }
 
-    public function updateWatch($ID,$namn,$marke,$kategori,$beskrivning,$pris,$lager,$bild) {
+    public function updateWatch($ID,$namn,$marke,$kategori,$beskrivning,$lager,$pris,$bild) {
         try {
 
 
@@ -116,7 +115,7 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
            // $statement = $pdo->prepare('UPDATE h15_exlusivewatches SET id=:ID, '
              //   . 'namn=:Namn, marke=:Marke, kategori=:Kategori, beskrivning=:Beskrivning, pris = :Pris, lager = :Lager, bildurl = :Bildurl WHERE id=:ID');
             //binder de namngivna platshållaren till det postade data i $_POST[];
-            $sqlQuery = ("h15exlusivewatches_updateWatch (?,?,?,?,?,?,?,?)");
+            $sqlQuery = ("CALL h15exlusivewatches_updateWatch (?,?,?,?,?,?,?,?)");
 
 
             $statement = $pdo -> prepare($sqlQuery);
@@ -128,8 +127,8 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
             $statement->bindParam(3, $marke, PDO::PARAM_STR);
             $statement->bindParam(4, $kategori, PDO::PARAM_STR);
             $statement->bindParam(5,$beskrivning, PDO::PARAM_STR);
-            $statement->bindParam(6, $pris);
-            $statement->bindParam(7, $lager, PDO::PARAM_INT);
+            $statement->bindParam(6, $lager,PDO::PARAM_INT);
+            $statement->bindParam(7, $pris, PDO::PARAM_STR);
             $statement->bindParam(8, $bild, PDO::PARAM_STR);
             //exekverar frågan
             $statement->execute();

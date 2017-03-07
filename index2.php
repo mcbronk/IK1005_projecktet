@@ -25,12 +25,12 @@ if (method_exists($model,$queryArray[0])){
                 $name = filter_var(trim($_POST['namn']));
                 $brand = filter_var(trim($_POST['marke']));
                 $category = filter_var(trim($_POST['kategori']));
-                $price = filter_var(trim($_POST['pris']));
                 $desc = filter_var(trim($_POST['beskrivning']));
                 $storage = filter_var(trim($_POST['lager']));
+                $price = filter_var(trim($_POST['pris']));
                 $pic = filter_var(trim($_POST['bildurl']));
 
-                $model ->addWatch($id,$name,$brand,$category,$price,$desc,$storage,$pic);
+                $model ->addWatch($id,$name,$brand,$category,$desc,$storage,$price,$pic);
 
                 break;
 
@@ -40,21 +40,18 @@ if (method_exists($model,$queryArray[0])){
                 $id = filter_var(trim($_POST['id']));
                 $name = filter_var(trim($_POST['namn']));
                 $brand = filter_var(trim($_POST['marke']));
-
-
                 $category = filter_var(trim($_POST['kategori']));
-                $price = filter_var(trim($_POST['pris']));
                 $desc = filter_var(trim($_POST['beskrivning']));
                 $storage = filter_var(trim($_POST['lager']));
+                $price = filter_var(trim($_POST['pris']));
                 $pic = filter_var(trim($_POST['bildurl']));
 
-                $model ->updateWatch($id,$name,$brand,$category,$price,$desc,$storage,$pic);
+                $model ->updateWatch($id,$name,$brand,$category,$desc,$storage,$price,$pic);
 
                 break;
 
 
             case 'deleteWatch':
-
                 $model ->deleteWatch($queryArray[1]);
                 break;
         }

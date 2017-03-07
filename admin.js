@@ -42,12 +42,12 @@ $(document).on('click', '.admindoit',this, function () {
     addDialog();
 });
 
-$(document).on('click', '.homeBtn',this, function () {
+/*$(document).on('click', '.homeBtn',this, function () {
 
     window.location.href='index.php';
 
 });
-
+*/
 
 
 
@@ -67,7 +67,7 @@ $(document).on('click', '.uppdatera',this, function () {
 
 function addProdukt() {
 
-    $.post("index2.php?addWatch", $("#addForm").serialize())
+    $.post("index2.php?addWatch/    ", $("#addForm").serialize())
         .done(function () {
             getAll();
 
@@ -75,7 +75,7 @@ function addProdukt() {
 }
 
 function updateWatch() {
-    $.post("index2.php?updateWatch", $("#updateForm").serialize())
+    $.post("index2.php?updateWatch/", $("#updateForm").serialize())
         .done(function () {
 
             getAll();
@@ -101,13 +101,13 @@ function addDialog() {
 
     var text1 ='<form id="addForm">'+
         '<p id="idP">ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
-        '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
-        '<p>Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
-        '<p>Kategori</p><input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
+        '<p id="namnP">Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
+        '<p id="markeP">Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
+        '<p id="kategoriP">Kategori</p> <input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
         '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
-        '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
-        '<p id="lagerP">Lager</p><input type="text" id="inputLager" name="lager" class="form-control"><br>'+
-        '<p id="bildP">Bildurl</p><input type="text" id="inputBildurl" name="bildurl"  class="form-control"><br>'+
+        '<p id="beskrivningP">Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
+        '<p id="lagerP">Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
+        '<p id="bildP">Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
         '</form>';
 
     $('#dialog').dialog().empty();
@@ -118,12 +118,12 @@ function addDialog() {
         width: 500,
         modal: true,
         buttons: {
-            "Lägg till produtk!": function () {
-                if(validate()){
+            "Lägg till produkt!": function () {
+           //     if(validate()){
                     addProdukt();
                     $('#addForm').trigger('reset');
                     $(this).dialog("close");
-                }
+         //       }
 
 
             },
@@ -148,11 +148,11 @@ function updateDialog(id) {
 
     var text1 ='<form id="updateForm">'+
         '<p id="idP">ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
-        '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
-        '<p>Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
-        '<p>Kategori</p><input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
+        '<p id="namnP">Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
+        '<p id="markeP">Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
+        '<p id="kategoriP">Kategori</p> <input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
         '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
-        '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
+        '<p id="beskrivningP">Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
     '<p id="lagerP">Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
     '<p id="bildP">Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
     '</form>';
@@ -166,11 +166,11 @@ function updateDialog(id) {
         modal: true,
         buttons: {
             "Uppdatera produkt!": function () {
-                if(validate()){
+            //    if(validate()){
                     updateWatch();
                     $('#updateForm').trigger('reset');
                     $(this).dialog("close");
-                }
+              //  }
 
 
             },
@@ -346,12 +346,18 @@ function createTable(data) {
 }
 
 
-
+/*
 function validate() {
     var error = 0; // Error variabel med värdet 0
 
+
+
     //Hämtar in värden i olika input fält för att se till att det finns värden att kontrollera
     var id = $("#inputID").val();
+    var name =$("#inputNamn").val();
+    var brand =$("#inputMarke").val();
+    var category = $('#inputKategori').val();
+    var desc = $('#inputBeskrivning').val();
     var price = $("#inputPris").val();
     var pic = $("#inputBildurl").val();
     var warehouse = $("#inputLager").val();
@@ -367,6 +373,11 @@ function validate() {
     if(!Number.isInteger(id) && !$.isNumeric(id)){
         $("#idP").text("ID nummer måste vara ett heltal.").css("color","red");
         error ++; // error ökas med en
+
+        if(id.length==0) {
+            $("#idP").text("Vänligen skriv in ett ID nummer").css("color","red");
+        }
+
     } else {
         $("#idP").text("ID").css("color","black"); // Återställer elementet till normala texten
 
@@ -375,6 +386,10 @@ function validate() {
     if(!$.isNumeric(price)) {
         $("#prisP").text("Priset måste innehålla siffror").css("color","red");
         error ++; // Error ökas med en om det är fel på inputen
+
+        if(price.length==0) {
+            $("#prisP").text("Vänligen skriv in ett pris").css("color","red");
+        }
     } else {
         $("#prisP").text("Pris").css("color","black");
     }
@@ -383,6 +398,11 @@ function validate() {
     //Kollar "filformat" på bilden, om det är en jpg, png eller gif
     if(picture == ".jpg" || picture == ".png" || picture == ".gif" || picture2 == ".jpeg"){
         $("#bildP").text("Bildurl").css("color","black");
+
+        if(picture.length==0 || picture2.length == 0) {
+            $("#bildP").text("Vänligen lägg till en bild").css("color","red");
+        }
+
     }else {
         $("#bildP").text("Bilden måste sluta på .png .jpg .jpeg eller .gif filformat").css("color","red");
         error++;
@@ -392,11 +412,51 @@ function validate() {
   if(!$.isNumeric(warehouse) && !Number.isInteger(id)){
       $("#lagerP").text("Du måste skriva hur många det finns i lager i heltal.").css("color","red");
         error++;
+
+      if(warehouse.length==0) {
+          $("#lagerP").text("Vänligen skriv in hur många som finns på lager").css("color","red");
+      }
+
   }
   else {
       $("#lagerP").text("Lager").css("color","black");
 
   }
+
+
+
+  //Kollar om desc, kategori och märke samt namnfälten är tomma
+    if(name.length== 0) {
+      error++;
+      $("#namnP").text("Du måste skriva ett namn.").css("color","red");
+    }
+    else {
+        $("#namnP").text("Namn").css("color","black");
+    }
+
+    if(brand.length== 0) {
+        error++;
+        $("#markeP").text("Du måste skriva in ett märke").css("color","red");
+    }
+    else {
+        $("#markeP").text("Märke").css("color","black");
+    }
+
+    if(desc.length== 0) {
+        error++;
+        $("#beskrivningP").text("Vänligen fyll i beskrivning max 500 ord").css("color","red");
+    }
+    else {
+        $("#beskrivningP").text("Beskrivning").css("color","black");
+    }
+
+    if(category.length== 0) {
+        error++;
+        $("#kategoriP").text("Du måste skriva in en kategori").css("color","red");
+    }
+    else {
+        $("#kategoriP").text("Kategori").css("color","black");
+    }
 
     //Om error är lika med 0 så ska true returneras och man kan uppdatera eller lägga till
     if(error == 0) {
@@ -406,5 +466,5 @@ function validate() {
     else {
         return false;
     }
-
-}
+    }
+*/

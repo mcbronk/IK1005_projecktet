@@ -29,7 +29,7 @@ IN inBildurl varchar(255)
 BEGIN
 UPDATE h15_exlusivewatches
 SET ID = inID,
-Name= inNamn,
+Namn= inNamn,
 Marke = inMarke,
 Kategori = inKategori,
 Beskrivning= inBeskrivning,
