@@ -27,6 +27,12 @@ if (method_exists($model,$queryArray[0])){
 
             case 'updateWatch':
 
+                break;
+
+
+            case 'deleteWatch':
+
+                break;
         }
     }
     else {

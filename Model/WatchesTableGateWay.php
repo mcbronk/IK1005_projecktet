@@ -144,8 +144,11 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
     public function deleteWatch($id) {
         try {
             $pdo = DBConnection::connect();
+
+            $sqlQuery = ("CALL h15ExclusiveWatches_removeWatch({$id})");
+
             //tar bort en bil på regnr använder namngivna platshållare tex (:regnummer)
-            $statement = $pdo->prepare('DELETE FROM h15_exlusivewatches WHERE id=:ID');
+            $statement = $pdo->prepare($sqlQuery);
             //binder den namngivna platshållaren till parameterna $regnr
             $statement->bindParam(':ID', $id);
             //exekverar frågan
