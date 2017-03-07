@@ -93,14 +93,14 @@ function deleteWatch(id, name) {
 function addDialog() {
 
     var text1 ='<form id="addForm">'+
-        '<p>ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
+        '<p id="idP">ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
         '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
         '<p>Märke</p> <input type="text" id="inputNamn" name="marke"  class="form-control"><br>'+
         '<p>Kategori</p><input type="text" id="inputMarke" name="kategori"  class="form-control"><br>'+
-        '<p>Pris</p><input type="text" id="inputKategori" name="pris" class="form-control"><br>'+
+        '<p id="prisP">Pris</p><input type="text" id="inputKategori" name="pris" class="form-control"><br>'+
         '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
-        '<p>Lager</p><input type="text" id="inputLager" name="lager" class="form-control"><br>'+
-        '<p>Bildurl</p><input type="text" id="inputPris" name="bildurl"  class="form-control"><br>'+
+        '<p id="lagerP">Lager</p><input type="text" id="inputLager" name="lager" class="form-control"><br>'+
+        '<p id="bildP">Bildurl</p><input type="text" id="inputPris" name="bildurl"  class="form-control"><br>'+
         '</form>';
 
     $('#dialog').dialog().empty();
@@ -112,9 +112,12 @@ function addDialog() {
         modal: true,
         buttons: {
             "Lägg till produtk!": function () {
-                addProdukt();
-                $('#addForm').trigger('reset');
-                $(this).dialog("close");
+                if(validate()){
+                    addProdukt();
+                    $('#addForm').trigger('reset');
+                    $(this).dialog("close");
+                }
+
 
             },
             "Cancel": function () {
@@ -137,14 +140,14 @@ function updateDialog(id) {
     $.getJSON("index2.php?getWatchesById/" + id).done(fyllDialog);
 
     var text1 ='<form id="updateForm">'+
-        '<p>ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
+        '<p id="idP">ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
         '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
         '<p>Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
         '<p>Kategori</p><input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
-        '<p>Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
+        '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
         '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
-    '<p>Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
-    '<p>Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
+    '<p id="lagerP">Lager</p><input type="text"  id="inputLager" name="lager" class="form-control"><br>'+
+    '<p id="bildP">Bildurl</p><input type="text"  id="inputBildurl" name="bildurl"  class="form-control"><br>'+
     '</form>';
 
     $('#dialog').dialog().empty();
@@ -156,9 +159,12 @@ function updateDialog(id) {
         modal: true,
         buttons: {
             "Uppdatera produkt!": function () {
-                updateWatch();
-                $('#updateForm').trigger('reset');
-                $(this).dialog("close");
+                if(validate()){
+                    updateWatch();
+                    $('#updateForm').trigger('reset');
+                    $(this).dialog("close");
+                }
+
 
             },
             "Cancel": function () {
@@ -327,5 +333,66 @@ function createTable(data) {
     $("#main").append(mainet);
     $('.panel-heading').append(tbl);
 
+
+}
+
+
+
+function validate() {
+    var error = 0; // Error variabel med värdet 0
+
+    var id = $("#inputID").val();
+    var price = $("#inputPris").val();
+    var pic = $("#inputBildurl").val();
+    var warehouse = $("#inputLager").val();
+    //console.log(pic);
+    var picture = pic.substr(pic.length -4);
+    // console.log(picture);
+
+
+
+    //Kollar om ID inte är en interger och inte ett numeriskt värde
+    if(!Number.isInteger(id) && !$.isNumeric(id)){
+        $("#idP").text("ID nummer måste vara ett heltal.").css("color","red");
+        error ++; // error ökas med en
+    } else {
+        $("#idP").text("ID").css("color","black"); // Återställer elementet till normala texten
+
+    }
+    //Kollar om priset är en siffra eller ej
+    if(!$.isNumeric(price)) {
+        $("#prisP").text("Priset måste innehålla siffror").css("color","red");
+        error ++; // Error ökas med en om det är fel på inputen
+    } else {
+        $("#prisP").text("Pris").css("color","black");
+    }
+
+
+    //Kollar "filformat" på bilden, om det är en jpg, png eller gif
+    if(picture == ".jpg" || picture == ".png" || picture == ".gif"){
+        $("#bildP").text("Bildurl").css("color","black");
+    }else {
+        $("#bildP").text("Bilden måste sluta på .png .jpg eller .gif filformat").css("color","red");
+        error++;
+    }
+
+    //Kollar om lagerstatus är skrivet i siffror
+  if(!$.isNumeric(warehouse) && !Number.isInteger(id)){
+      $("#lagerP").text("Du måste skriva hur många det finns i lager i heltal.").css("color","red");
+        error++;
+  }
+  else {
+      $("lagerP").text("Lager").css("color","black");
+
+  }
+
+    //Om error är lika med 0 så ska true returneras och man kan uppdatera eller lägga till
+    if(error == 0) {
+        return true;
+    }
+    //Annars får man error meddelanden som bara den
+    else {
+        return false;
+    }
 
 }
