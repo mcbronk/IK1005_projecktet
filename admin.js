@@ -347,6 +347,7 @@ function validate() {
     var warehouse = $("#inputLager").val();
     //console.log(pic);
     var picture = pic.substr(pic.length -4);
+    var picture2 = pic.substr(pic.length -5);
     // console.log(picture);
 
 
@@ -369,10 +370,10 @@ function validate() {
 
 
     //Kollar "filformat" på bilden, om det är en jpg, png eller gif
-    if(picture == ".jpg" || picture == ".png" || picture == ".gif"){
+    if(picture == ".jpg" || picture == ".png" || picture == ".gif" || picture2 == ".jpeg"){
         $("#bildP").text("Bildurl").css("color","black");
     }else {
-        $("#bildP").text("Bilden måste sluta på .png .jpg eller .gif filformat").css("color","red");
+        $("#bildP").text("Bilden måste sluta på .png .jpg .jpeg eller .gif filformat").css("color","red");
         error++;
     }
 
@@ -382,7 +383,7 @@ function validate() {
         error++;
   }
   else {
-      $("lagerP").text("Lager").css("color","black");
+      $("#lagerP").text("Lager").css("color","black");
 
   }
 
