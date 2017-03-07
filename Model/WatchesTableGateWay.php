@@ -80,22 +80,24 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
 }
     }
 // får ut post härifrån och skapa procedurer.
-    public function addWatch() {
+    public function addWatch($ID,$namn,$marke,$kategori,$beskrivning,$pris,$lager,$bild) {
         try {
             $pdo = DBConnection::connect();
+
+            $sqlQuery = ("CALL h15ExclusiveWatches_addWatch (?,?,?,?,?,?,?,?))");
+
             //lägger till en bil använder namngivna platshållare tex (:regnummer)
-            $statement = $pdo->prepare('INSERT INTO h15_exlusivewatches (ID, Namn, '
-                . 'Marke, Kategori, Beskrivning, Pris, Lager, Bildurl) VALUES(:ID, :Namn, :Marke, :Kategori, :Beskrivning, :Pris, :Lager, :Bildurl)');
+            $statement = $pdo->prepare($sqlQuery);
             //binder de namngivna platshållaren till det postade data i $_POST[];
             //saniterar det postade från tex html taggar
-            $statement->bindParam(':ID', filter_var(trim($_POST['id']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Namn', filter_var(trim($_POST['namn']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Marke', filter_var(trim($_POST['marke']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Kategori', filter_var(trim($_POST['kategori']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Beskrivning', filter_var(trim($_POST['beskrivning']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Pris', filter_var(trim($_POST['pris']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Lager', filter_var(trim($_POST['lager']), FILTER_SANITIZE_STRING));
-            $statement->bindParam(':Bildurl', filter_var(trim($_POST['bildurl']), FILTER_SANITIZE_STRING));
+            $statement->bindParam(':ID', $ID, PDO::PARAM_INT);
+            $statement->bindParam(':Namn', $namn, PDO::PARAM_STR);
+            $statement->bindParam(':Marke', $marke, PDO::PARAM_STR);
+            $statement->bindParam(':Kategori', $kategori, PDO::PARAM_STR);
+            $statement->bindParam(':Beskrivning',$beskrivning, PDO::PARAM_STR);
+            $statement->bindParam(':Pris', $pris);
+            $statement->bindParam(':Lager', $lager, PDO::PARAM_INT);
+            $statement->bindParam(':Bildurl', $bild, PDO::PARAM_STR);
             //exekverar frågan
             $statement->execute();
             $pdo = NULL;
@@ -114,7 +116,7 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
            // $statement = $pdo->prepare('UPDATE h15_exlusivewatches SET id=:ID, '
              //   . 'namn=:Namn, marke=:Marke, kategori=:Kategori, beskrivning=:Beskrivning, pris = :Pris, lager = :Lager, bildurl = :Bildurl WHERE id=:ID');
             //binder de namngivna platshållaren till det postade data i $_POST[];
-            $sqlQuery = ("CALL h15ExclusiveWatches_addWatch (?,?,?,?,?,?,?,?))");
+            $sqlQuery = ("");
 
 
             $statement = $pdo -> prepare($sqlQuery);
@@ -128,7 +130,7 @@ if(isset($_POST['searchField'])) { //Är $_POST['searchField'] TRUE går vi vida
             $statement->bindParam(':Beskrivning',$beskrivning, PDO::PARAM_STR);
             $statement->bindParam(':Pris', $pris);
             $statement->bindParam(':Lager', $lager, PDO::PARAM_INT);
-            $statement->bindParam(':Bildurl', $beskrivning, PDO::PARAM_STR);
+            $statement->bindParam(':Bildurl', $bild, PDO::PARAM_STR);
             //exekverar frågan
             $statement->execute();
 
