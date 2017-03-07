@@ -100,12 +100,12 @@ function addDialog() {
     var text1 ='<form id="addForm">'+
         '<p id="idP">ID</p> <input type="text" id="inputID" name="id" value="" class="form-control"><br>'+
         '<p>Namn</p> <input type="text" id="inputNamn" name="namn"  class="form-control"><br>'+
-        '<p>Märke</p> <input type="text" id="inputNamn" name="marke"  class="form-control"><br>'+
-        '<p>Kategori</p><input type="text" id="inputMarke" name="kategori"  class="form-control"><br>'+
-        '<p id="prisP">Pris</p><input type="text" id="inputKategori" name="pris" class="form-control"><br>'+
+        '<p>Märke</p> <input type="text" id="inputMarke" name="marke"  class="form-control"><br>'+
+        '<p>Kategori</p><input type="text" id="inputKategori" name="kategori"  class="form-control"><br>'+
+        '<p id="prisP">Pris</p><input type="text" id="inputPris" name="pris" class="form-control"><br>'+
         '<p>Beskrivning</p><input type="text" id="inputBeskrivning" name="beskrivning"  class="form-control"><br>'+
         '<p id="lagerP">Lager</p><input type="text" id="inputLager" name="lager" class="form-control"><br>'+
-        '<p id="bildP">Bildurl</p><input type="text" id="inputPris" name="bildurl"  class="form-control"><br>'+
+        '<p id="bildP">Bildurl</p><input type="text" id="inputBildurl" name="bildurl"  class="form-control"><br>'+
         '</form>';
 
     $('#dialog').dialog().empty();
@@ -351,14 +351,16 @@ function createTable(data) {
 function validate() {
     var error = 0; // Error variabel med värdet 0
 
+    //Hämtar in värden i olika input fält för att se till att det finns värden att kontrollera
     var id = $("#inputID").val();
     var price = $("#inputPris").val();
     var pic = $("#inputBildurl").val();
     var warehouse = $("#inputLager").val();
-    //console.log(pic);
+
+    //Substringar bilden för att se om det är en png,jpg,jpeg eller gif
     var picture = pic.substr(pic.length -4);
     var picture2 = pic.substr(pic.length -5);
-    // console.log(picture);
+
 
 
 

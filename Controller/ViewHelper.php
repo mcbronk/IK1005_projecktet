@@ -19,4 +19,7 @@ class ViewHelper
             throw new Exception('Finns ingen sådan template');
         }
     }
+
+
+    
 }
