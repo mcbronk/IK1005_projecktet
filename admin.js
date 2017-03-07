@@ -36,6 +36,8 @@ function getAll() {
     });
 }
 
+
+//trycks knappen med class admindoit körs den här funktionen, som i sin tur anropar funktionen addDialog().
 $(document).on('click', '.admindoit',this, function () {
     addDialog();
 });
@@ -188,6 +190,8 @@ function updateDialog(id) {
 
 }
 
+
+//Inspirerad från Hans exempelkod för att fylla textfälten.
 function fyllDialog(json) {
     $('#inputID').attr('value', json[0].ID);
     $('#inputNamn').attr('value', json[0].Namn);
@@ -201,7 +205,7 @@ function fyllDialog(json) {
 }
 
 
-
+//Inspirerad från Hans exempelkod för att bygga en tabell.
 function createTable(data) {
 
     $("#main").empty();
@@ -331,11 +335,6 @@ function createTable(data) {
 
     maindiv1.append(addBtn);
     maindiv1.append(homeBtn);
-
-
-
-
-
 
     maindiv1.append(maindiv2);
     mainet.append(maindiv1);
