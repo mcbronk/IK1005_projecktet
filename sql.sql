@@ -14,3 +14,27 @@ INSERT INTO h15_exlusivewatches
 VALUES
 (inID, inName, inBrand, inCategory, inDesc, inStatus, inPrice, inPIC);
 END##
+
+
+CREATE PROCEDURE h15exlusivewatches_updateWatch (
+IN inID int(10),
+IN inNamn varchar(255),
+IN inMarke varchar(60),
+IN inKategori varchar(255),
+IN inBeskrivning varchar(500),
+IN inLager int(10),
+IN inPris decimal(10,0),
+IN inBildurl varchar(255)
+)
+BEGIN
+UPDATE h15_exlusivewatches
+SET ID = inID,
+Name= inNamn,
+Marke = inMarke,
+Kategori = inKategori,
+Beskrivning= inBeskrivning,
+Lager = inLager,
+Pris = inPris,
+Bildurl = inBildurl
+WHERE ID = inID;
+END##
