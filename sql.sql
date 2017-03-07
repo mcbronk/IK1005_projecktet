@@ -38,3 +38,12 @@ Pris = inPris,
 Bildurl = inBildurl
 WHERE ID = inID;
 END##
+
+CREATE PROCEDURE h15ExclusiveWatches_removeWatch(
+  IN inID int (10)
+)
+  BEGIN
+    DELETE
+    FROM h15_exclusivewatches
+    WHERE inID = ID;
+    END##
